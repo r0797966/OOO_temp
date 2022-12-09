@@ -21,15 +21,15 @@ public class MetroMain extends Application {
 		// FACADE
 		MetroFacade metroFacade = new MetroFacade();
 		// CONTROLLERS
-		ControlCenterPaneController controlCenterPaneController = new ControlCenterPaneController();
-		MetroCardOverviewPaneController metroCardOverviewPaneController = new MetroCardOverviewPaneController();
-		MetroStationViewController metroStationViewController = new MetroStationViewController();
-		MetroTicketViewController metroTicketViewController = new MetroTicketViewController();
+		ControlCenterPaneController controlCenterPaneController = new ControlCenterPaneController(metroFacade);
+		MetroCardOverviewPaneController metroCardOverviewPaneController = new MetroCardOverviewPaneController(metroFacade);
+		MetroStationViewController metroStationViewController = new MetroStationViewController(metroFacade);
+		MetroTicketViewController metroTicketViewController = new MetroTicketViewController(metroFacade);
 		// setup controller
 		// VIEWS
-		AdminView adminView = new AdminView();
-		MetroTicketView metroTicketView = new MetroTicketView();
-		MetroStationView metroStationView = new MetroStationView();
+		AdminView adminView = new AdminView(controlCenterPaneController, metroCardOverviewPaneController);
+		MetroTicketView metroTicketView = new MetroTicketView(metroTicketViewController);
+		MetroStationView metroStationView = new MetroStationView(metroStationViewController);
 	}
 	
 	public static void main(String[] args) {

@@ -23,7 +23,7 @@ public class MetroCardOverviewPane extends GridPane{
 	private ObservableList<MetroCard> metroCards;
 	private TableView<MetroCard> table = new TableView<MetroCard>();
 	
-	public MetroCardOverviewPane() throws IOException {
+	public MetroCardOverviewPane(MetroCardOverviewPaneController metroCardOverviewPaneController) throws IOException {
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);        

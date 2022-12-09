@@ -7,11 +7,12 @@ import model.observer.Subject;
 import view.panels.MetroCardOverviewPane;
 
 public class MetroCardOverviewPaneController implements Observer {
+    private MetroFacade metroFacade;
     private MetroCardOverviewPane metroCardOverviewPane;
-    private MetroFacade metroFacade = new MetroFacade();
 
-    public MetroCardOverviewPaneController() {
-        //metroFacadeSubject.addObserver(this);
+    public MetroCardOverviewPaneController(MetroFacade metroFacade) {
+        this.metroFacade = metroFacade;
+        this.metroFacade.addObserver(this);
     }
 
     @Override

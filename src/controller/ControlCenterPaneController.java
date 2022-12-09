@@ -7,10 +7,11 @@ import view.panels.ControlCenterPane;
 
 public class ControlCenterPaneController implements Observer {
     private ControlCenterPane controlCenterPane;
-    private MetroFacade metroFacade = new MetroFacade();
+    private MetroFacade metroFacade;
 
-    public ControlCenterPaneController() {
-        //metroFacadeSubject.addObserver(this);
+    public ControlCenterPaneController(MetroFacade metroFacade) {
+        this.metroFacade = metroFacade;
+        this.metroFacade.addObserver(this);
     }
 
 
@@ -23,6 +24,7 @@ public class ControlCenterPaneController implements Observer {
 
     // OPENMETROSTATION
     public void openMetroStation() {
+        System.out.println("open metrostation in controller");
         this.metroFacade.openMetroStation();
     }
 }

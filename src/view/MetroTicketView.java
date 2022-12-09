@@ -14,7 +14,7 @@ public class MetroTicketView {
 
 	private Stage stage = new Stage();		
 		
-	public MetroTicketView(){
+	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
 		stage.setTitle("METROTICKET VIEW");
 		stage.initStyle(StageStyle.UTILITY);
 		stage.setX(5);

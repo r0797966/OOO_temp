@@ -38,7 +38,7 @@ public class MetroFacade implements Subject {
 
             System.out.println("notify observers");
             System.out.println(observers);
-            eventCalled(OPEN_METROSTATION);
+            notifyObservers(OPEN_METROSTATION);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -69,10 +69,6 @@ public class MetroFacade implements Subject {
     @Override
     public void notifyObservers(MetroEventsEnum event) {
         observers.forEach(o -> o.update(event));
-    }
-
-    public void eventCalled(MetroEventsEnum event) {
-        notifyObservers(event);
     }
 
     // GET OBSERVERS

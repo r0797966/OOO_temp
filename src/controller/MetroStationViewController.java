@@ -7,11 +7,12 @@ import model.observer.Subject;
 import view.MetroStationView;
 
 public class MetroStationViewController implements Observer {
+    private MetroFacade metroFacade;
     public MetroStationView metroStationView;
-    private MetroFacade metroFacade = new MetroFacade();
 
-    public MetroStationViewController() {
-        //metroFacadeSubject.addObserver(this);
+    public MetroStationViewController(MetroFacade metroFacade) {
+        this.metroFacade = metroFacade;
+        this.metroFacade.addObserver(this);
     }
 
     @Override
