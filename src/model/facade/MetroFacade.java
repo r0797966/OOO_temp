@@ -1,13 +1,12 @@
 package model.facade;
 
-import model.Observer;
-import model.Subject;
+import model.observer.Observer;
+import model.observer.Subject;
 import model.database.MetrocardDatabase;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

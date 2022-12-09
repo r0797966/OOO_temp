@@ -1,8 +1,7 @@
 package controller;
 
-import model.Observer;
+import model.observer.Observer;
 import model.facade.MetroEventsEnum;
-import view.panels.SetupPane;
 
 public class SetupPaneController implements Observer {
     //private SetupPane setupPane = new SetupPane();

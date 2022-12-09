@@ -1,11 +1,9 @@
 package controller;
 
-import model.Observer;
+import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
 import view.MetroTicketView;
-
-import java.util.ArrayList;
 
 public class MetroTicketViewController implements Observer {
     private MetroFacade metroFacade = new MetroFacade();

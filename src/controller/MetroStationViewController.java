@@ -1,6 +1,6 @@
 package controller;
 
-import model.Observer;
+import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
 import view.MetroStationView;
