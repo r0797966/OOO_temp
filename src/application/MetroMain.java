@@ -18,19 +18,14 @@ import java.io.IOException;
 public class MetroMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		// FACADE
+		MetroFacade metroFacade = new MetroFacade();
 		// CONTROLLERS
 		ControlCenterPaneController controlCenterPaneController = new ControlCenterPaneController();
 		MetroCardOverviewPaneController metroCardOverviewPaneController = new MetroCardOverviewPaneController();
 		MetroStationViewController metroStationViewController = new MetroStationViewController();
 		MetroTicketViewController metroTicketViewController = new MetroTicketViewController();
 		// setup controller
-		// FACADE
-		MetroFacade metroFacade = new MetroFacade();
-		metroFacade.addObserver(controlCenterPaneController);
-		metroFacade.addObserver(metroCardOverviewPaneController);
-		metroFacade.addObserver(metroStationViewController);
-		metroFacade.addObserver(metroTicketViewController);
-		//metroFacade.addObserver(setupController);
 		// VIEWS
 		AdminView adminView = new AdminView();
 		MetroTicketView metroTicketView = new MetroTicketView();

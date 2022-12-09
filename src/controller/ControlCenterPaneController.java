@@ -10,9 +10,7 @@ public class ControlCenterPaneController implements Observer {
     private MetroFacade metroFacade = new MetroFacade();
 
     public ControlCenterPaneController() {
-        /*
-        metroFacade.addObserver(this);
-        */
+        //metroFacadeSubject.addObserver(this);
     }
 
 
@@ -25,6 +23,6 @@ public class ControlCenterPaneController implements Observer {
 
     // OPENMETROSTATION
     public void openMetroStation() {
-        metroFacade.openMetroStation();
+        this.metroFacade.openMetroStation();
     }
 }

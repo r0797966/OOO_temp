@@ -2,12 +2,13 @@ package controller;
 
 import model.observer.Observer;
 import model.facade.MetroEventsEnum;
+import model.observer.Subject;
 
 public class SetupPaneController implements Observer {
     //private SetupPane setupPane = new SetupPane();
 
     public SetupPaneController() {
-        //setupPane.setController(this);
+        //metroFacadeSubject.addObserver(this);
     }
 
     @Override

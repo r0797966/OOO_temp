@@ -52,27 +52,6 @@ public class SetupPane extends GridPane {
 
     }
 
-    /*
-    try (OutputStream output = new FileOutputStream("path/to/config.properties")) {
-
-            Properties prop = new Properties();
-
-            // set the properties value
-            prop.setProperty("db.url", "localhost");
-            prop.setProperty("db.user", "mkyong");
-            prop.setProperty("db.password", "password");
-
-            // save properties to project root folder
-            prop.store(output, null);
-
-            System.out.println(prop);
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-
-     */
-
 
 
 }

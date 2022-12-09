@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.facade.MetroFacade;
 
 public class MetroStationView {
 	private MetroStationViewController metroStationViewController = new MetroStationViewController();

@@ -3,6 +3,7 @@ package controller;
 import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
+import model.observer.Subject;
 import view.MetroTicketView;
 
 public class MetroTicketViewController implements Observer {
@@ -10,9 +11,7 @@ public class MetroTicketViewController implements Observer {
     public MetroTicketView metroTicketView = new MetroTicketView();
 
     public MetroTicketViewController() {
-        /*
-        metroFacade.addObserver(this);
-        */
+        //metroFacadeSubject.addObserver(this);
     }
 
     @Override

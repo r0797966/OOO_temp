@@ -17,10 +17,9 @@ import static model.facade.MetroEventsEnum.OPEN_METROSTATION;
 
 public class MetroFacade implements Subject {
     private MetrocardDatabase metrocardDatabase = new MetrocardDatabase();
-    private List<Observer> observers;
+    private List<Observer> observers = new ArrayList<Observer>();
 
     public MetroFacade() {
-        observers = new ArrayList<>();
     }
 
     // OPENMETROSTATION

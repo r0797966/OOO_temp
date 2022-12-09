@@ -12,8 +12,6 @@ import java.io.IOException;
 
 public class AdminView {
 	private Stage stage = new Stage();
-	private MetroCardOverviewPaneController metroCardOverviewPaneController = new MetroCardOverviewPaneController();
-	private MetroFacade metroFacade = new MetroFacade();
 		
 	public AdminView() throws IOException {
 		stage.setTitle("ADMIN VIEW");
