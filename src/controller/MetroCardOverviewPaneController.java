@@ -10,7 +10,9 @@ public class MetroCardOverviewPaneController implements Observer {
     private MetroFacade metroFacade = new MetroFacade();
 
     public MetroCardOverviewPaneController() {
-
+        /*
+        metroFacade.addObserver(this);
+         */
     }
 
     @Override

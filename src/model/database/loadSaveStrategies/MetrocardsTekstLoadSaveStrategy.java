@@ -10,6 +10,11 @@ import java.util.TreeMap;
 
 public class MetrocardsTekstLoadSaveStrategy<K,V> extends TekstLoadSaveTemplate implements LoadSaveStrategy {
     File file = new File("src/bestanden/metrocards.txt");
+
+public MetrocardsTekstLoadSaveStrategy() throws IOException {
+        //super();
+    }
+
     public TreeMap<K,V> load() throws IOException {
         return super.load(file);
     }

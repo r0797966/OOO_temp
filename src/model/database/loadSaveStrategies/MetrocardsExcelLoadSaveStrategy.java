@@ -10,6 +10,11 @@ import java.util.TreeMap;
 
 public class MetrocardsExcelLoadSaveStrategy<K,V> extends ExcelLoadSaveTemplate implements LoadSaveStrategy{
     File file = new File("src/bestanden/metrocards.xls");
+
+    public MetrocardsExcelLoadSaveStrategy() throws IOException {
+        //super();
+    }
+
     @Override
     public TreeMap<K,V> load() throws IOException {
         return super.load(file);

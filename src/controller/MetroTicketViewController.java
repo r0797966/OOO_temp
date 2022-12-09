@@ -9,6 +9,12 @@ public class MetroTicketViewController implements Observer {
     private MetroFacade metroFacade = new MetroFacade();
     public MetroTicketView metroTicketView = new MetroTicketView();
 
+    public MetroTicketViewController() {
+        /*
+        metroFacade.addObserver(this);
+        */
+    }
+
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {

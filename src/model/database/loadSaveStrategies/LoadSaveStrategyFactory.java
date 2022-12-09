@@ -1,6 +1,11 @@
 package model.database.loadSaveStrategies;
 
 public class LoadSaveStrategyFactory {
+
+    public LoadSaveStrategyFactory() {
+    }
+
+
     // CREATELOADSAVESTRATEGY
     public static LoadSaveStrategy createLoadSaveStrategy(String type) {
         LoadSaveStrategyEnum loadSaveStrategyEnum = LoadSaveStrategyEnum.valueOf(type);

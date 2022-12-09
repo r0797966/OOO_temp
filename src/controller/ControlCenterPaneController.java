@@ -9,6 +9,12 @@ public class ControlCenterPaneController implements Observer {
     private ControlCenterPane controlCenterPane;
     private MetroFacade metroFacade = new MetroFacade();
 
+    public ControlCenterPaneController() {
+        /*
+        metroFacade.addObserver(this);
+        */
+    }
+
 
     @Override
     public void update(MetroEventsEnum event) {
