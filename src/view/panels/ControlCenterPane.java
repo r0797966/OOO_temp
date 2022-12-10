@@ -17,12 +17,14 @@ public class ControlCenterPane extends GridPane {
         this.setHgap(5);
 
         showControlCenter(controlCenterPaneController);
+
+        controlCenterPaneController.setView(this);
     }
 
     public void showControlCenter(ControlCenterPaneController controlCenterPaneController) throws IOException {
         // open metrostation button
         Button openButton = new Button("Open metrostation");
-        openButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
+        openButton.setOnAction(e ->
                 {
                     controlCenterPaneController.openMetroStation();
                     openButton.setDisable(true);

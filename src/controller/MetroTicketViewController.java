@@ -3,16 +3,26 @@ package controller;
 import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
-import model.observer.Subject;
 import view.MetroTicketView;
 
 public class MetroTicketViewController implements Observer {
-    private MetroFacade metroFacade;
-    public MetroTicketView metroTicketView;
+    private final MetroFacade model;
+    public MetroTicketView view;
 
     public MetroTicketViewController(MetroFacade metroFacade) {
-        this.metroFacade = metroFacade;
-        this.metroFacade.addObserver(this);
+        this.model = metroFacade;
+        this.model.addObserver(this);
+    }
+
+    public void setView(MetroTicketView metroTicketView) {
+        this.view = metroTicketView;
+    }
+
+    public void getMetroCardList() {
+        model.getMetroCardList();
+        // TODO: implement arraylist?
+        System.out.println("implement arraylist?");
+        view.updateMetroCardIdList(null);
     }
 
     @Override
@@ -20,13 +30,6 @@ public class MetroTicketViewController implements Observer {
         switch (event) {
             case OPEN_METROSTATION -> getMetroCardList();
         }
-    }
-
-    public void getMetroCardList() {
-        metroFacade.getMetroCardList();
-        // TODO: implement arraylist?
-        System.out.println("implement arraylist?");
-        metroTicketView.updateMetroCardIdList(null);
     }
 
 

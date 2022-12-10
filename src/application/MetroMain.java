@@ -1,9 +1,6 @@
 package application;
 	
-import controller.ControlCenterPaneController;
-import controller.MetroCardOverviewPaneController;
-import controller.MetroStationViewController;
-import controller.MetroTicketViewController;
+import controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.facade.MetroFacade;
@@ -11,6 +8,7 @@ import view.AdminView;
 import view.MetroStationView;
 import view.MetroTicketView;
 import view.panels.ControlCenterPane;
+import view.panels.SetupPane;
 
 import java.io.IOException;
 
@@ -19,17 +17,18 @@ public class MetroMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		// FACADE
-		MetroFacade metroFacade = new MetroFacade();
+		MetroFacade model = new MetroFacade();
 		// CONTROLLERS
-		ControlCenterPaneController controlCenterPaneController = new ControlCenterPaneController(metroFacade);
-		MetroCardOverviewPaneController metroCardOverviewPaneController = new MetroCardOverviewPaneController(metroFacade);
-		MetroStationViewController metroStationViewController = new MetroStationViewController(metroFacade);
-		MetroTicketViewController metroTicketViewController = new MetroTicketViewController(metroFacade);
-		// setup controller
+		ControlCenterPaneController controlCenterPaneController = new ControlCenterPaneController(model);
+		MetroCardOverviewPaneController metroCardOverviewPaneController = new MetroCardOverviewPaneController(model);
+		MetroStationViewController metroStationViewController = new MetroStationViewController(model);
+		MetroTicketViewController metroTicketViewController = new MetroTicketViewController(model);
+		SetupPaneController setupPaneController = new SetupPaneController(model);
 		// VIEWS
-		AdminView adminView = new AdminView(controlCenterPaneController, metroCardOverviewPaneController);
-		MetroTicketView metroTicketView = new MetroTicketView(metroTicketViewController);
-		MetroStationView metroStationView = new MetroStationView(metroStationViewController);
+		new AdminView(controlCenterPaneController, metroCardOverviewPaneController, setupPaneController);
+		new MetroTicketView(metroTicketViewController);
+		new MetroStationView(metroStationViewController);
+
 	}
 	
 	public static void main(String[] args) {

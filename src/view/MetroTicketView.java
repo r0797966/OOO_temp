@@ -10,8 +10,6 @@ import model.facade.MetroFacade;
 import java.util.ArrayList;
 
 public class MetroTicketView {
-	//public MetroTicketViewController metroTicketViewController = new MetroTicketViewController();
-
 	private Stage stage = new Stage();		
 		
 	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
@@ -23,7 +21,9 @@ public class MetroTicketView {
 		Scene scene = new Scene(root, 650, 350);			
 		stage.setScene(scene);
 		stage.sizeToScene();			
-		stage.show();		
+		stage.show();
+
+		metroTicketViewController.setView(this);
 	}
 
 	// UPDATEMETROCARDIDLIST(IDs ArrayList<Integer>)

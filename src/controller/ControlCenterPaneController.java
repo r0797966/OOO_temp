@@ -6,25 +6,27 @@ import model.facade.MetroFacade;
 import view.panels.ControlCenterPane;
 
 public class ControlCenterPaneController implements Observer {
-    private ControlCenterPane controlCenterPane;
-    private MetroFacade metroFacade;
+    private final MetroFacade model;
+    private ControlCenterPane view;
 
-    public ControlCenterPaneController(MetroFacade metroFacade) {
-        this.metroFacade = metroFacade;
-        this.metroFacade.addObserver(this);
+    public ControlCenterPaneController(MetroFacade model) {
+        this.model = model;
+        this.model.addObserver(this);
     }
 
+    public void setView(ControlCenterPane controlView) {
+        this.view = controlView;
+    }
+
+    // OPENMETROSTATION
+    public void openMetroStation() {
+        model.openMetroStation();
+    }
 
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
             case OPEN_METROSTATION -> openMetroStation();
         }
-    }
-
-    // OPENMETROSTATION
-    public void openMetroStation() {
-        System.out.println("open metrostation in controller");
-        this.metroFacade.openMetroStation();
     }
 }

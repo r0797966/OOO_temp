@@ -30,6 +30,8 @@ public class MetroCardOverviewPane extends GridPane{
 		this.add(new Label("List of Metro cards:"), 0, 0, 1, 1);
 
 		showMetrocards();
+
+		metroCardOverviewPaneController.setView(this);
 	}
 
 	public void showMetrocards() throws IOException {

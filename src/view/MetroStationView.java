@@ -8,7 +8,6 @@ import javafx.stage.StageStyle;
 import model.facade.MetroFacade;
 
 public class MetroStationView {
-	
 	private Stage stage = new Stage();		
 	
 	public MetroStationView(MetroStationViewController metroStationViewController) {
@@ -20,6 +19,8 @@ public class MetroStationView {
 		Scene scene = new Scene(root, 650, 300);			
 		stage.setScene(scene);
 		stage.sizeToScene();			
-		stage.show();		
+		stage.show();
+
+		metroStationViewController.setView(this);
 	}
 }

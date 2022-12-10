@@ -3,22 +3,25 @@ package controller;
 import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
-import model.observer.Subject;
 import view.MetroStationView;
 
 public class MetroStationViewController implements Observer {
-    private MetroFacade metroFacade;
-    public MetroStationView metroStationView;
+    private final MetroFacade model;
+    public MetroStationView view;
 
-    public MetroStationViewController(MetroFacade metroFacade) {
-        this.metroFacade = metroFacade;
-        this.metroFacade.addObserver(this);
+    public MetroStationViewController(MetroFacade model) {
+        this.model = model;
+        this.model.addObserver(this);
+    }
+
+    public void setView(MetroStationView metroStationView) {
+        this.view = metroStationView;
     }
 
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-            case OPEN_METROSTATION -> System.out.println("NOTHING YET");
+
         }
     }
 

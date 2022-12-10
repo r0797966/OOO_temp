@@ -1,23 +1,19 @@
 package model.facade;
 
-import model.observer.Observer;
-import model.observer.Subject;
 import model.database.MetrocardDatabase;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
+import model.observer.Observer;
+import model.observer.Subject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-
-import static model.facade.MetroEventsEnum.OPEN_METROSTATION;
 
 public class MetroFacade implements Subject {
     private MetrocardDatabase metrocardDatabase = new MetrocardDatabase();
-    private List<Observer> observers = new ArrayList<Observer>();
+    //private List<Observer> observers = new ArrayList<Observer>();
 
     public MetroFacade() {
     }
@@ -36,9 +32,10 @@ public class MetroFacade implements Subject {
             metrocardDatabase.setLoadSaveStrategy(loadSaveStrategy);
             metrocardDatabase.load();
 
+            // TODO: repeats???
             System.out.println("notify observers");
-            System.out.println(observers);
-            notifyObservers(OPEN_METROSTATION);
+            System.out.println();
+            notifyObservers(MetroEventsEnum.OPEN_METROSTATION);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -47,11 +44,15 @@ public class MetroFacade implements Subject {
 
     //GETMETROCARDLIST: ARRAYLIST<METROCARD>
     public void getMetroCardList() {
+        // TODO: implement
+        System.out.println("implement getMetroCardList in MetroFacade");
         metrocardDatabase.getMetroCardList();
     }
 
     // GETMETROCARDIDLIST: ARRAYLIST<INTEGER>
     public void getMetroCardIdList() {
+        // TODO: implement
+        System.out.println("implement getMetroCardIdList in MetroFacade");
         metrocardDatabase.getMetroCardIdList();
     }
 
@@ -69,10 +70,5 @@ public class MetroFacade implements Subject {
     @Override
     public void notifyObservers(MetroEventsEnum event) {
         observers.forEach(o -> o.update(event));
-    }
-
-    // GET OBSERVERS
-    public List<Observer> getObservers() {
-        return observers;
     }
 }
