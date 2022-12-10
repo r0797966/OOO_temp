@@ -28,7 +28,7 @@ public class MetroTicketView {
 
 	// UPDATEMETROCARDIDLIST(IDs ArrayList<Integer>)
 	public void updateMetroCardIdList(ArrayList<Integer> ids) {
-		// TODO: refresh doen van de choicebox met metrocard ID’s
+		// TODO: refresh doen van de choicebox met metrocard ID’s -> hebben we nog niet
 		System.out.println("implement updateMetroCardIdList in MetroTicketView");
 	}
 }

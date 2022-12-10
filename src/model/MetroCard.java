@@ -60,7 +60,7 @@ public class MetroCard {
     // METHODS
     @Override
     public String toString(){
-        return "MetrokaarID: " + getMetrokaartID() + " Datum: " + getDatum() + " Beschikbare tickets: " + getBeschikbareTickets() + " Verbruike tickets: " + getVerbruikeTickets();
+        return "MetrokaartID: " + getMetrokaartID() + " Datum: " + getDatum() + " Beschikbare tickets: " + getBeschikbareTickets() + " Verbruike tickets: " + getVerbruikeTickets();
     }
 
 

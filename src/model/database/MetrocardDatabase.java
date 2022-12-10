@@ -37,7 +37,6 @@ public class MetrocardDatabase {
     }
 
     public void setLoadSaveStrategy(LoadSaveStrategy type) {
-        System.out.println(type.getClass().getSimpleName());
         if (type.getClass().getSimpleName().equals("MetrocardsTekstLoadSaveStrategy")) {
              this.loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy("TEKST");
         } else {
@@ -51,8 +50,13 @@ public class MetrocardDatabase {
 
     public ArrayList<Integer> getMetroCardIdList() {
         // TODO: implement
-        System.out.println("implement getMetroCardIdList in MetrocardDatabase");
-        return null;
+        // return ids from metroCards
+        ArrayList<Integer> ids = new ArrayList<>();
+        for(Map.Entry<Integer, MetroCard> entry : metroCards.entrySet()) {
+            ids.add(entry.getValue().getMetrokaartID());
+        }
+        System.out.println(ids);
+        return ids;
     }
 
     // LOAD

@@ -29,7 +29,6 @@ public class MetroFacade implements Subject {
             Properties properties = new Properties();
             properties.load(input);
             LoadSaveStrategy loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy(properties.getProperty("filetype").toUpperCase());
-            System.out.println(loadSaveStrategy);
 
             metrocardDatabase.setLoadSaveStrategy(loadSaveStrategy);
             metrocardDatabase.load();
@@ -47,9 +46,8 @@ public class MetroFacade implements Subject {
     }
 
     // GETMETROCARDIDLIST: ARRAYLIST<INTEGER>
-    public void getMetroCardIdList() {
-        // TODO: implement
-        metrocardDatabase.getMetroCardIdList();
+    public ArrayList<Integer> getMetroCardIdList() {
+        return metrocardDatabase.getMetroCardIdList();
     }
 
     // SUBJECT
