@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MetroTicketView extends GridPane {
 	private Stage stage = new Stage();
-	ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
+	private ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
 		
 	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
 		stage.setTitle("METROTICKET VIEW");
@@ -63,6 +63,7 @@ public class MetroTicketView extends GridPane {
 
 		// select metrocard choicebox
 		Label label = new Label("Select metro card:");
+		vBox2.getChildren().add(label);
 		vBox2.getChildren().add(metroCardIdList);
 
 		root.getChildren().add(vBox1);
