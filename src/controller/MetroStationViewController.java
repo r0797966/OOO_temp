@@ -6,7 +6,7 @@ import model.facade.MetroFacade;
 import view.MetroStationView;
 
 public class MetroStationViewController implements Observer {
-    private final MetroFacade model;
+    private MetroFacade model;
     public MetroStationView view;
 
     public MetroStationViewController(MetroFacade model) {

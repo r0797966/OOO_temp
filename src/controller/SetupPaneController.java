@@ -7,10 +7,10 @@ import view.panels.SetupPane;
 
 public class SetupPaneController implements Observer {
     private SetupPane view;
-    private final MetroFacade model;
+    private MetroFacade model;
 
-    public SetupPaneController(MetroFacade metroFacade) {
-        this.model = metroFacade;
+    public SetupPaneController(MetroFacade model) {
+        this.model = model;
         this.model.addObserver(this);
     }
 

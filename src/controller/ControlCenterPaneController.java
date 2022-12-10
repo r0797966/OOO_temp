@@ -3,10 +3,11 @@ package controller;
 import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
+import model.observer.Subject;
 import view.panels.ControlCenterPane;
 
 public class ControlCenterPaneController implements Observer {
-    private final MetroFacade model;
+    private MetroFacade model;
     private ControlCenterPane view;
 
     public ControlCenterPaneController(MetroFacade model) {
@@ -18,15 +19,16 @@ public class ControlCenterPaneController implements Observer {
         this.view = controlView;
     }
 
-    // OPENMETROSTATION
-    public void openMetroStation() {
-        model.openMetroStation();
-    }
-
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-            case OPEN_METROSTATION -> openMetroStation();
+
         }
+    }
+
+    // OPENMETROSTATION
+    public void openMetroStation() {
+        System.out.println("openMetroStation");
+        model.openMetroStation();
     }
 }

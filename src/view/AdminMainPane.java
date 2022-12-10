@@ -4,6 +4,7 @@ package view;
 import controller.ControlCenterPaneController;
 import controller.MetroCardOverviewPaneController;
 import controller.SetupPaneController;
+import javafx.scene.control.Control;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
@@ -16,7 +17,7 @@ import java.io.IOException;
 
 public class AdminMainPane extends BorderPane {
 	public AdminMainPane(ControlCenterPaneController controlCenterPaneController, MetroCardOverviewPaneController metroCardOverviewPaneController,
-        SetupPaneController setupPaneController) throws IOException {
+                         SetupPaneController setupPaneController) throws IOException {
 	    TabPane tabPane = new TabPane(); 	    
         MetroCardOverviewPane metroCardOverviewPane = new MetroCardOverviewPane(metroCardOverviewPaneController);
         ControlCenterPane controlCenterPane = new ControlCenterPane(controlCenterPaneController);

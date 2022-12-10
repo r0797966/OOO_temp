@@ -19,7 +19,6 @@ public class SetupPane extends GridPane {
         this.setHgap(5);
 
         showSetup();
-
         setupPaneController.setView(this);
     }
 

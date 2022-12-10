@@ -15,8 +15,8 @@ import java.io.IOException;
 public class AdminView {
 	private Stage stage = new Stage();
 		
-	public AdminView(ControlCenterPaneController controlCenterPaneController, MetroCardOverviewPaneController metroCardOverviewPaneController
-		, SetupPaneController setupPaneController) throws IOException {
+	public AdminView(ControlCenterPaneController controlCenterPaneController, MetroCardOverviewPaneController metroCardOverviewPaneController,
+					 SetupPaneController setupPaneController) throws IOException {
 		stage.setTitle("ADMIN VIEW");
 		stage.initStyle(StageStyle.UTILITY);
 		stage.setX(660);
