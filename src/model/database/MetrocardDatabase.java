@@ -55,7 +55,6 @@ public class MetrocardDatabase {
         for(Map.Entry<Integer, MetroCard> entry : metroCards.entrySet()) {
             ids.add(entry.getValue().getMetrokaartID());
         }
-        System.out.println(ids);
         return ids;
     }
 
