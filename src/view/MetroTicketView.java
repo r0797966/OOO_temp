@@ -63,7 +63,6 @@ public class MetroTicketView extends GridPane {
 
 		// select metrocard choicebox
 		Label label = new Label("Select metro card:");
-
 		vBox2.getChildren().add(metroCardIdList);
 
 		root.getChildren().add(vBox1);
