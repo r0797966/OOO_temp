@@ -22,7 +22,7 @@ public class ControlCenterPaneController implements Observer {
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-
+            case BUY_METROCARD -> openMetroStation();
         }
     }
 

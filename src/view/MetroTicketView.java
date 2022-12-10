@@ -36,11 +36,11 @@ public class MetroTicketView extends GridPane {
 		stage.show();
 
 		metroTicketViewController.setView(this);
-		metroTicketShow(root);
+		metroTicketShow(root, metroTicketViewController);
 
 	}
 
-	public void metroTicketShow(VBox root){
+	public void metroTicketShow(VBox root, MetroTicketViewController metroTicketViewController){
 		// VBOX 1
 		VBox vBox1 = new VBox();
 
@@ -50,6 +50,7 @@ public class MetroTicketView extends GridPane {
 		Button newCardButton = new Button("New metro card");
 		newCardButton.setOnAction(e -> {
 			System.out.println("New metro card");
+			metroTicketViewController.newMetrocard();
 		});
 		// TEXT
 		Text text1 = new Text("Metro card price is 15€ - 2 free rides included");

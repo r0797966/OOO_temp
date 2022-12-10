@@ -29,5 +29,9 @@ public class MetroTicketViewController implements Observer {
         view.updateMetroCardIdList(model.getMetroCardIdList());
     }
 
+    public void newMetrocard() {
+        model.newMetrocard();
+    }
+
 
 }

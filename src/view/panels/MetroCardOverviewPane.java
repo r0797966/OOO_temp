@@ -61,11 +61,6 @@ public class MetroCardOverviewPane extends GridPane{
 
 	}
 
-	public void refresh() throws IOException {
-		metrocardDatabase.setLoadSaveStrategy(null);
-		metrocardDatabase.load();
-	}
-
 	public void updateMetroCardList(ArrayList<MetroCard> metroCards) {
 		this.metroCards = FXCollections.observableList(metroCards);
 		table.setItems(this.metroCards);

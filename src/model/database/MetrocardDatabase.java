@@ -9,6 +9,7 @@ import model.database.utilities.TekstLoadSaveTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class MetrocardDatabase {
 
     // METHODS
     public int getAantalMetroCards(){
-    	return metroCards.size()-1;
+    	return metroCards.size();
     }
 
     public void setLoadSaveStrategy(LoadSaveStrategy type) {
@@ -56,6 +57,19 @@ public class MetrocardDatabase {
             ids.add(entry.getValue().getMetrokaartID());
         }
         return ids;
+    }
+
+    public void newMetrocard() {
+        int id = getAantalMetroCards() + 1;
+        LocalDate date = LocalDate.now();
+        String month = String.valueOf(date.getMonthValue());
+        String year = String.valueOf(date.getYear());
+        String datum = month + "#" + year;
+        // 2 gratis tickets
+        MetroCard newCard = new MetroCard(id, datum, 2, 0);
+        System.out.println(newCard.getMetrokaartID());
+        System.out.println("New metrocard created: " + newCard);
+        metroCards.put(id, newCard);
     }
 
     // LOAD
