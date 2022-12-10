@@ -35,9 +35,6 @@ public class MetroFacade implements Subject {
             metrocardDatabase.setLoadSaveStrategy(loadSaveStrategy);
             metrocardDatabase.load();
 
-            // TODO: repeats???
-            System.out.println("notify observers");
-            System.out.println();
             notifyObservers(MetroEventsEnum.OPEN_METROSTATION);
 
         } catch (IOException e) {
