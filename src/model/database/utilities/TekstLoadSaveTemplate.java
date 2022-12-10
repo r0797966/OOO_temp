@@ -1,17 +1,14 @@
 package model.database.utilities;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public abstract class TekstLoadSaveTemplate<K,V>{
     // LOAD
-    public TreeMap<K,V> load(File file) throws IOException {
-        TreeMap<K,V> returnMap = new TreeMap<K,V>();
+    public HashMap<K,V> load(File file) throws IOException {
+        HashMap<K,V> returnMap = new HashMap<K,V>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line = reader.readLine();
             while (line != null && !line.trim().equals("")) {
@@ -26,6 +23,23 @@ public abstract class TekstLoadSaveTemplate<K,V>{
         }
         return returnMap;
     }
+
+    public void save(HashMap<K,V> map) throws IOException {
+        try {
+            FileWriter writer = new FileWriter("src/bestanden/metrocards.txt");
+            for (Map.Entry<K,V> entry : map.entrySet()) {
+                writer.write( entry.getValue() + "\n");
+
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(">>> File error!!!");
+            e.printStackTrace();
+        }
+    }
+
+        //
+
 
     public abstract V maakObject(String[] tokens);
 

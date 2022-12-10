@@ -21,7 +21,12 @@ public class MetroCardOverviewPaneController implements Observer {
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-            case OPEN_METROSTATION -> getMetroCardList();
+            case OPEN_METROSTATION:
+                getMetroCardList();
+                break;
+            case BUY_METROCARD:
+                getMetroCardList();
+                break;
         }
     }
 

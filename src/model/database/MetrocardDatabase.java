@@ -13,15 +13,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class MetrocardDatabase {
-    private TreeMap<Integer, MetroCard> metroCards;
+    private HashMap<Integer, MetroCard> metroCards;
     private LoadSaveStrategy loadSaveStrategy;
 
     // CONSTRUCTOR
     public MetrocardDatabase() {
-        metroCards = new TreeMap<Integer, MetroCard>();
+        metroCards = new HashMap<Integer, MetroCard>();
         metroCards.put(1, new MetroCard(1, "05#2022", 2, 3));
         metroCards.put(2, new MetroCard(2, "06#2022", 3, 4));
         metroCards.put(3, new MetroCard(3, "06#2022", 4, 5));
@@ -70,11 +70,20 @@ public class MetrocardDatabase {
         System.out.println(newCard.getMetrokaartID());
         System.out.println("New metrocard created: " + newCard);
         metroCards.put(id, newCard);
+        try {
+            save();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // LOAD
     public void load() throws IOException {
         metroCards = loadSaveStrategy.load();
+    }
+
+    public void save() throws IOException {
+        loadSaveStrategy.save(metroCards);
     }
 
     // SAVE

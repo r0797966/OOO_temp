@@ -2,20 +2,22 @@ package model.database.utilities;
 
 import excel.ExcelPlugin;
 import jxl.read.biff.BiffException;
+import jxl.write.WriteException;
 import model.MetroCard;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public abstract class ExcelLoadSaveTemplate<K,V> {
     // LOAD
-    public TreeMap<K,V> load(File file) throws IOException {
+    public HashMap<K,V> load(File file) throws IOException {
         ExcelPlugin excelPlugin = new ExcelPlugin();
-        TreeMap<K,V> returnMap;
+        HashMap<K,V> returnMap;
         ArrayList<ArrayList<String>> data = null;
         try {
             data = excelPlugin.read(file);
@@ -23,7 +25,7 @@ public abstract class ExcelLoadSaveTemplate<K,V> {
             System.out.println(e.getMessage());
         }
 
-        returnMap = new TreeMap<K,V>();
+        returnMap = new HashMap<K,V>();
 
         for(ArrayList<String> row: data) {
             String[] tokens = new String[row.size()];
@@ -35,6 +37,30 @@ public abstract class ExcelLoadSaveTemplate<K,V> {
             returnMap.put(key, element);
         }
         return returnMap;
+    }
+    public void save(HashMap<K,V> map) throws IOException {
+        // turn the hashmap into an arraylist
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        for (Map.Entry<K,V> entry : map.entrySet()) {
+            ArrayList<String> row = new ArrayList<String>();
+            String value = entry.getValue().toString();
+            // split the string into tokens
+            String[] tokens = value.split(";");
+            for (String token : tokens) {
+                row.add(token);
+            }
+            data.add(row);
+            System.out.println(data);
+        }
+        System.out.println(data);
+
+        ExcelPlugin excelPlugin = new ExcelPlugin();
+        try {
+            excelPlugin.write(new File("src/bestanden/metrocards.xls"), data);
+        } catch (BiffException | WriteException e) {
+            throw new RuntimeException(e);
+
+        }
     }
 
     public abstract V maakObject(String[] tokens);

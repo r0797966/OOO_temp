@@ -21,7 +21,9 @@ public class MetroStationViewController implements Observer {
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-            case OPEN_METROSTATION -> getMetroCardIdList();
+            case OPEN_METROSTATION:
+                getMetroCardIdList();
+                break;
         }
     }
 

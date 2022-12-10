@@ -1,6 +1,5 @@
 package view;
 
-import com.sun.tools.javac.Main;
 import controller.MetroTicketViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
