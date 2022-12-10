@@ -43,6 +43,7 @@ public class MetroStationView {
 
 		Text title1 = new Text("Gate 1");
 		Label label = new Label("MetroCardID:");
+		metroCardIdList.setMinWidth(100);
 
 		gate1.getChildren().add(title1);
 		gate1.getChildren().add(label);
