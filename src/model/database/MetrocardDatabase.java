@@ -45,9 +45,7 @@ public class MetrocardDatabase {
     }
 
     public ArrayList<MetroCard> getMetroCardList() {
-        // TODO: implement
-        System.out.println("implement getMetroCardList in MetrocardDatabase");
-        return null;
+        return new ArrayList<>(metroCards.values());
     }
 
     public ArrayList<Integer> getMetroCardIdList() {

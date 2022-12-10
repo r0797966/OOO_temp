@@ -26,10 +26,7 @@ public class MetroTicketViewController implements Observer {
     }
 
     public void getMetroCardList() {
-        model.getMetroCardList();
-        // TODO: implement arraylist?
-        System.out.println("implement arraylist?");
-        view.updateMetroCardIdList(null);
+        // TODO: implement
     }
 
 

@@ -1,5 +1,6 @@
 package model.facade;
 
+import model.MetroCard;
 import model.database.MetrocardDatabase;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
@@ -24,14 +25,12 @@ public class MetroFacade implements Subject {
     // OPENMETROSTATION
     public void openMetroStation() {
         try {
-            // createLoadSaveStrategy in LoadSaveStrategyFactory
             InputStream input = new FileInputStream("src/bestanden/settings.properties");
             Properties properties = new Properties();
             properties.load(input);
             LoadSaveStrategy loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy(properties.getProperty("filetype").toUpperCase());
+            System.out.println(loadSaveStrategy);
 
-            // setLoadSaveStrategy in MetrocardDatabase
-            // load in MetrocardDatabase
             metrocardDatabase.setLoadSaveStrategy(loadSaveStrategy);
             metrocardDatabase.load();
 
@@ -43,16 +42,13 @@ public class MetroFacade implements Subject {
     }
 
     //GETMETROCARDLIST: ARRAYLIST<METROCARD>
-    public void getMetroCardList() {
-        // TODO: implement
-        System.out.println("implement getMetroCardList in MetroFacade");
-        metrocardDatabase.getMetroCardList();
+    public ArrayList<MetroCard> getMetroCardList() {
+        return metrocardDatabase.getMetroCardList();
     }
 
     // GETMETROCARDIDLIST: ARRAYLIST<INTEGER>
     public void getMetroCardIdList() {
         // TODO: implement
-        System.out.println("implement getMetroCardIdList in MetroFacade");
         metrocardDatabase.getMetroCardIdList();
     }
 

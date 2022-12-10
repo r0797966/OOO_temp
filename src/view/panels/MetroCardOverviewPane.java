@@ -64,14 +64,17 @@ public class MetroCardOverviewPane extends GridPane{
 	public void refresh() throws IOException {
 		metrocardDatabase.setLoadSaveStrategy(null);
 		metrocardDatabase.load();
-		metroCards = FXCollections.observableArrayList(metrocardDatabase.getMetroCards().values());
-		table.setItems(metroCards);
-		table.refresh();
 	}
 
 	public void updateMetroCardList(ArrayList<MetroCard> metroCards) {
 		// TODO: refresh doen van de TableGrid control met metrokaart gegevens
-		System.out.println("implement updateMetroCardList in MetroCardOverviewPane");
+		/*metroCards = FXCollections.observableList(metroCards);
+		table.setItems(metroCards);
+		table.refresh();*/
+		this.metroCards = FXCollections.observableList(metroCards);
+		table.setItems(this.metroCards);
+		System.out.println("updateMetroCardList");
+		table.refresh();
 
 	}
 }

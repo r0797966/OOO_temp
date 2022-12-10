@@ -21,15 +21,12 @@ public class MetroCardOverviewPaneController implements Observer {
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-            case OPEN_METROSTATION -> System.out.println("observer called");//getMetroCardList();
+            case OPEN_METROSTATION -> getMetroCardList();//getMetroCardList();
         }
     }
 
     public void getMetroCardList() {
-        model.getMetroCardList();
-        // TODO
-        System.out.println("implement arraylist?");
-        view.updateMetroCardList(null);
+        view.updateMetroCardList(model.getMetroCardList());
     }
 }
 
