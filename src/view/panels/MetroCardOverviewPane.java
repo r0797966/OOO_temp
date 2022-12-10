@@ -67,13 +67,8 @@ public class MetroCardOverviewPane extends GridPane{
 	}
 
 	public void updateMetroCardList(ArrayList<MetroCard> metroCards) {
-		// TODO: refresh doen van de TableGrid control met metrokaart gegevens
-		/*metroCards = FXCollections.observableList(metroCards);
-		table.setItems(metroCards);
-		table.refresh();*/
 		this.metroCards = FXCollections.observableList(metroCards);
 		table.setItems(this.metroCards);
-		System.out.println("updateMetroCardList");
 		table.refresh();
 
 	}

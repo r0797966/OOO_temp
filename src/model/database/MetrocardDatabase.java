@@ -37,10 +37,11 @@ public class MetrocardDatabase {
     }
 
     public void setLoadSaveStrategy(LoadSaveStrategy type) {
-        if (type == null) {
-             loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy("TEKST");
+        System.out.println(type.getClass().getSimpleName());
+        if (type.getClass().getSimpleName().equals("MetrocardsTekstLoadSaveStrategy")) {
+             this.loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy("TEKST");
         } else {
-            loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy("EXCEL");
+            this.loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy("EXCEL");
         }
     }
 
