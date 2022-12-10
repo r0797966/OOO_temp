@@ -144,4 +144,4 @@ replay_pid*
 
 *.xml
 *.iml
-idea/*
+.idea/

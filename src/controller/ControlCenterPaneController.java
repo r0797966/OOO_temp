@@ -28,7 +28,6 @@ public class ControlCenterPaneController implements Observer {
 
     // OPENMETROSTATION
     public void openMetroStation() {
-        System.out.println("openMetroStation");
         model.openMetroStation();
     }
 }

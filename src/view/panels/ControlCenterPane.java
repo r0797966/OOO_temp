@@ -25,7 +25,6 @@ public class ControlCenterPane extends GridPane {
         Button openButton = new Button("Open metrostation");
         openButton.setOnAction(e ->
                 {
-                    System.out.println("open button clicked");
                     controlCenterPaneController.openMetroStation();
                     openButton.setDisable(true);
                 });
