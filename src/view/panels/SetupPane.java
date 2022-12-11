@@ -5,13 +5,13 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.database.loadSaveStrategies.LoadSaveStrategyEnum;
+import model.ticketPriceDecorator.TicketPriceDiscountEnum;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,92 +19,112 @@ import java.util.Properties;
 import java.util.StringJoiner;
 
 public class SetupPane extends GridPane {
-    private ChoiceBox choiceBox;
-    Button saveButton = new Button("Save");
+    private Button saveButton = new Button("Save");
+    private SetupPaneController controller;
+
+    private String filetype = "tekst";
+    private ArrayList<String> discountTypes = new ArrayList<>();
 
     public SetupPane(SetupPaneController setupPaneController) {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
+        VBox root = new VBox();
+        root.setSpacing(10);
+        root.setPadding(new Insets(10, 10, 10, 10));
+        this.getChildren().add(root);
 
-        showSetup();
+        this.controller = setupPaneController;
         setupPaneController.setView(this);
+
+        filetypeChoice(root);
+        discountChoices(root);
+        saveButton(root);
     }
 
-    public void showSetup() {
-        VBox vBox = new VBox();
-        vBox.setPadding(new Insets(5, 5, 5, 5));
-        vBox.setSpacing(10);
-        // FILE TYPE
+    public void filetypeChoice(VBox root) {
         HBox fileTypeBox = new HBox();
         fileTypeBox.setSpacing(10);
         fileTypeBox.setAlignment(Pos.CENTER_LEFT);
-        Label fileTypeLabel = new Label("File Type:");
-        choiceBox = new ChoiceBox(FXCollections.observableArrayList(
-                "tekst", "excel")
-        );
-        choiceBox.getSelectionModel().selectFirst();
-        fileTypeBox.getChildren().addAll(fileTypeLabel, choiceBox);
+        fileTypeBox.setPadding(new Insets(5, 5, 5, 5));
 
-        // DISCOUNT CHOICES
-        Label discountLabel = new Label("Discounts:");
-        CheckBox plus64 = new CheckBox("AGE64PLUSDISCOUNT");
-        CheckBox christmas = new CheckBox("CHRISTMASDISCOUNT");
-        CheckBox student = new CheckBox("STUDENTDISCOUNT");
-        CheckBox frequent = new CheckBox("FREQUENTDISCOUNT");
-        HBox discount = new HBox();
-        discount.setSpacing(10);
-        discount.getChildren().addAll(plus64, christmas, student, frequent);
+        ToggleGroup toggleGroup = new ToggleGroup();
 
-        // SAVE BUTTON
+        Label chooseFileExtensionLabel = new Label("File type:");
+        fileTypeBox.getChildren().add(chooseFileExtensionLabel);
+
+        LoadSaveStrategyEnum[] loadSaveStrategiesEnums = LoadSaveStrategyEnum.values();
+
+        for (int i = 0; i < loadSaveStrategiesEnums.length; i++) {
+            LoadSaveStrategyEnum strategyEnum = loadSaveStrategiesEnums[i];
+
+            RadioButton radioButton = new RadioButton(strategyEnum.getOmschrijving());
+            radioButton.setToggleGroup(toggleGroup);
+            radioButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                this.filetype = radioButton.getText();
+            });
+
+            fileTypeBox.getChildren().add(radioButton);
+        }
+
+        root.getChildren().add(fileTypeBox);
+    }
+
+    public void discountChoices(VBox root){
+        HBox discountBox = new HBox();
+        discountBox.setSpacing(10);
+        discountBox.setPadding(new Insets(5, 5, 5, 5));
+
+        Label chooseDiscountLabel = new Label("Discount:");
+        discountBox.getChildren().add(chooseDiscountLabel);
+
+        TicketPriceDiscountEnum[] ticketPriceDiscountEnums = TicketPriceDiscountEnum.values();
+
+        for (int i = 0; i < ticketPriceDiscountEnums.length; i++) {
+            TicketPriceDiscountEnum strategyEnum = ticketPriceDiscountEnums[i];
+
+            CheckBox checkBox = new CheckBox(strategyEnum.getOmschrijving());
+            checkBox.selectedProperty().addListener(e -> {
+                if(checkBox.isSelected()){
+                    discountTypes.add(checkBox.getText());
+                } else {
+                    discountTypes.remove(checkBox.getText());
+                }
+            });
+
+            discountBox.getChildren().add(checkBox);
+        }
+
+        root.getChildren().add(discountBox);
+
+    }
+
+    public void saveButton(VBox root){
+        HBox saveButtonBox = new HBox();
+        saveButtonBox.setPadding(new Insets(5, 5, 5, 5));
         saveButton.setDisable(true);
-        saveButton.setOnAction(e ->
-                {
-                    // save to file
-                    String value = (String) choiceBox.getValue();
-                    // checkbox choices
-                    boolean plus64Selected = plus64.isSelected();
-                    boolean christmasSelected = christmas.isSelected();
-                    boolean studentSelected = student.isSelected();
-                    boolean frequentSelected = frequent.isSelected();
-                    try (OutputStream output = new FileOutputStream("src/bestanden/settings.properties")) {
-                        InputStream file = new FileInputStream("src/bestanden/settings.properties");
-                        Properties properties = new Properties();
-                        properties.load(file);
+        saveButton.setOnAction(e -> {
+            try (OutputStream output = new FileOutputStream("src/bestanden/settings.properties")) {
+                InputStream file = new FileInputStream("src/bestanden/settings.properties");
+                Properties properties = new Properties();
+                properties.load(file);
 
-                        properties.setProperty("filetype", value);
+                properties.setProperty("filetype", filetype);
 
-                        ArrayList<String> discountList = new ArrayList<>();
-                        if(plus64Selected) {
-                            discountList.add("AGE64PLUSDISCOUNT");
-                        }
-                        if(christmasSelected) {
-                            discountList.add("CHRISTMASDISCOUNT");
-                        }
-                        if(studentSelected) {
-                            discountList.add("STUDENTDISCOUNT");
-                        }
-                        if(frequentSelected) {
-                            discountList.add("FREQUENTDISCOUNT");
-                        }
-                        StringJoiner sj = new StringJoiner(",");
-                        discountList.forEach(sj::add);
-                        properties.setProperty("discounts", sj.toString());
+                StringJoiner stringJoiner = new StringJoiner(",");
+                for (String discountType : discountTypes) {
+                    stringJoiner.add(discountType);
+                }
+                properties.setProperty("discounts", stringJoiner.toString());
 
-
-                        properties.store(output, "Changed filetype");
-                        file.close();
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                });
-
-        vBox.getChildren().add(fileTypeBox);
-        vBox.getChildren().add(discountLabel);
-        vBox.getChildren().add(discount);
-        vBox.getChildren().add(saveButton);
-
-        this.getChildren().add(vBox);
+                properties.store(output, "Changed filetype");
+                file.close();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
+        saveButtonBox.getChildren().add(saveButton);
+        root.getChildren().add(saveButtonBox);
     }
 
     public void openSetup() {
