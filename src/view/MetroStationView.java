@@ -1,6 +1,7 @@
 package view;
 
 import controller.MetroStationViewController;
+import controller.MetroTicketViewController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -20,7 +21,8 @@ import java.util.ArrayList;
 
 public class MetroStationView {
 	private Stage stage = new Stage();
-	ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
+	private ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
+	private MetroStationViewController metroStationViewController;
 	
 	public MetroStationView(MetroStationViewController metroStationViewController) {
 		stage.setTitle("METRO STATION VIEW");
@@ -34,11 +36,11 @@ public class MetroStationView {
 		stage.show();
 
 		metroStationViewController.setView(this);
-		metroStationShow(root);
+		this.metroStationViewController = metroStationViewController;
+		metroGate(root);
 	}
 
-	public void metroStationShow(HBox root) {
-		// gate 1
+	public void metroGate(HBox root) {
 		VBox gate1 = new VBox();
 		gate1.setSpacing(10);
 		gate1.setPadding(new Insets(10, 10, 10, 10));
@@ -69,9 +71,8 @@ public class MetroStationView {
 		gate1.getChildren().add(walkThroughGateButton);
 		gate1.getChildren().add(information);
 
-		gate1.setStyle("-fx-background-color: grey;");
-
 		root.getChildren().add(gate1);
+
 	}
 
 	public void updateMetroCardIdList(ArrayList<Integer> ids) {

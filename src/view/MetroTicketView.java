@@ -4,6 +4,7 @@ import controller.MetroTicketViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -41,14 +42,15 @@ public class MetroTicketView extends GridPane {
 
 		metroTicketViewController.setView(this);
 		newCardView(root);
-		addRidesView(root);
+		addRides(root);
+		informationView(root);
 	}
 
 	// NEW CARD VBOX
 	public void newCardView(VBox root){
 		VBox vBox = new VBox();
 
-		vBox.setSpacing(10);
+		vBox.setSpacing(5);
 		vBox.setPadding(new Insets(10, 10, 10, 10));
 		// NEW CARD BUTTON
 		newCardButton.setDisable(true);
@@ -67,8 +69,7 @@ public class MetroTicketView extends GridPane {
 		root.getChildren().add(vBox);
 	}
 
-	// ADD RIDES VBOX
-	public void addRidesView(VBox root){
+	public void addRides(VBox root){
 		// select metrocard choicebox
 		HBox hBox = new HBox();
 		hBox.setSpacing(10);
@@ -94,7 +95,7 @@ public class MetroTicketView extends GridPane {
 
 		// age range
 		HBox hBox4 = new HBox();
-		hBox4.setSpacing(10);
+		hBox4.setSpacing(5);
 		ToggleGroup toggleGroup = new ToggleGroup();
 		RadioButton radioButton1 = new RadioButton("younger than 26 years");
 		RadioButton radioButton2 = new RadioButton("between 26 and 64 years");
@@ -106,15 +107,31 @@ public class MetroTicketView extends GridPane {
 		hBox4.getChildren().add(radioButton2);
 		hBox4.getChildren().add(radioButton3);
 
+		// add rides button
+		Button button = new Button("Add extra rides to metro card");
+
+		VBox vBox = new VBox();
+		vBox.setSpacing(10);
+		vBox.setPadding(new Insets(10, 10, 10, 10));
+		vBox.setStyle("-fx-background-color: grey;");
+		vBox.getChildren().add(hBox);
+		vBox.getChildren().add(hBox2);
+		vBox.getChildren().add(hBox3);
+		vBox.getChildren().add(hBox4);
+		vBox.getChildren().add(button);
+		root.getChildren().add(vBox);
+	}
+
+	// ADD RIDES VBOX
+	public void informationView(VBox root){
 		// information
 		VBox vBox2 = new VBox();
-		vBox2.setSpacing(10);
+		vBox2.setSpacing(5);
 		vBox2.setPadding(new Insets(10, 10, 10, 10));
-		// add button
-		Button button = new Button("Add extra rides to metro card");
 		// price
 		HBox hBox5 = new HBox();
 		hBox5.setSpacing(10);
+		hBox5.setAlignment(Pos.CENTER_LEFT);
 		Label label3 = new Label("Total price:");
 		TextField textField2 = new TextField("to change");
 		textField2.setPrefWidth(80);
@@ -131,23 +148,14 @@ public class MetroTicketView extends GridPane {
 		hBox6.getChildren().add(button2);
 		hBox6.getChildren().add(button3);
 
-		vBox2.getChildren().add(button);
 		vBox2.getChildren().add(hBox5);
 		vBox2.getChildren().add(text);
 		vBox2.getChildren().add(hBox6);
-
-		vBox2.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-border-style: solid;");
-
 
 		// add boxes
 		VBox vBox = new VBox();
 		vBox.setSpacing(10);
 		vBox.setPadding(new Insets(10, 10, 10, 10));
-		vBox.setStyle("-fx-background-color: grey;");
-		vBox.getChildren().add(hBox);
-		vBox.getChildren().add(hBox2);
-		vBox.getChildren().add(hBox3);
-		vBox.getChildren().add(hBox4);
 		vBox.getChildren().add(vBox2);
 		root.getChildren().add(vBox);
 	}
