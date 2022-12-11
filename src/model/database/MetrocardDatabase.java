@@ -4,6 +4,7 @@ import model.MetroCard;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
 import model.ticketPriceDecorator.TicketPrice;
+import model.ticketPriceDecorator.TicketPriceFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -71,11 +72,23 @@ public class MetrocardDatabase {
         }
     }
 
-    public TicketPrice addRidesInformation(Integer id, int rides, boolean isStudent, boolean isWeekend) {
+    public TicketPrice addRidesInformation(Integer id, int rides, boolean isStudent, boolean isSenior) {
         // TODO: implement
         MetroCard metroCard = metroCards.get(id);
-        System.out.println(metroCard);
+        System.out.println(metroCard); // NULL??
         System.out.println(metroCards.containsKey(id)); // FALSE???
+
+        // boolean isFrequent
+        boolean isFrequent = false;
+
+        // bereken ticketPrice met rides + isStudent + isSenior + aantalVerbuikteTickets (50+?)
+        /*if(metroCard.getVerbruikeTickets() > 50) {
+            isFrequent = true;
+        }
+        TicketPriceFactory.createTicketPrice(isSenior, isStudent, isFrequent, metroCard);
+         */
+
+        //metroCard.setTicketPrice() via createTicketPrice
         return null;
     }
 
