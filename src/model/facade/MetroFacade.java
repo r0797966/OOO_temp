@@ -42,6 +42,15 @@ public class MetroFacade implements Subject {
         }
     }
 
+    public void reloadMetroStation() {
+        try {
+            metrocardDatabase.load();
+            notifyObservers(MetroEventsEnum.OPEN_METROSTATION);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     //GETMETROCARDLIST: ARRAYLIST<METROCARD>
     public ArrayList<MetroCard> getMetroCardList() {
         return metrocardDatabase.getMetroCardList();
@@ -53,7 +62,7 @@ public class MetroFacade implements Subject {
     }
 
     // NEWCARD
-    public void newMetrocard() {
+    public void newMetrocard() throws IOException {
         metrocardDatabase.newMetrocard();
         notifyObservers(MetroEventsEnum.BUY_METROCARD);
     }
@@ -71,6 +80,12 @@ public class MetroFacade implements Subject {
 
     @Override
     public void notifyObservers(MetroEventsEnum event) {
-        observers.forEach(o -> o.update(event));
+        observers.forEach(o -> {
+            try {
+                o.update(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

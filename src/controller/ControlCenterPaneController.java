@@ -6,6 +6,8 @@ import model.facade.MetroFacade;
 import model.observer.Subject;
 import view.panels.ControlCenterPane;
 
+import java.io.IOException;
+
 public class ControlCenterPaneController implements Observer {
     private MetroFacade model;
     private ControlCenterPane view;
@@ -20,10 +22,10 @@ public class ControlCenterPaneController implements Observer {
     }
 
     @Override
-    public void update(MetroEventsEnum event) {
+    public void update(MetroEventsEnum event) throws IOException {
         switch (event) {
             case BUY_METROCARD:
-                openMetroStation();
+                reloadMetrostation();
                 break;
 
         }
@@ -33,5 +35,9 @@ public class ControlCenterPaneController implements Observer {
     // OPENMETROSTATION
     public void openMetroStation() {
         model.openMetroStation();
+    }
+
+    public void reloadMetrostation() throws IOException {
+        model.reloadMetroStation();
     }
 }

@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class SetupPane extends GridPane {
     private ChoiceBox choiceBox;
-    Button saveButton = new Button("Save and exit");
+    Button saveButton = new Button("Save");
 
     public SetupPane(SetupPaneController setupPaneController) {
         this.setPadding(new Insets(5, 5, 5, 5));
@@ -46,8 +46,6 @@ public class SetupPane extends GridPane {
 
                          properties.store(output, "Changed filetype to " + value);
                          file.close();
-                         // kan waarschijnlijk beter
-                         Platform.exit();
                      } catch (IOException ex) {
                          System.out.println(ex.getMessage());
                 }

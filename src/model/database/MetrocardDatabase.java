@@ -60,6 +60,7 @@ public class MetrocardDatabase {
     }
 
     public void newMetrocard() {
+        System.out.println(loadSaveStrategy);
         int id = getAantalMetroCards() + 1;
         LocalDate date = LocalDate.now();
         String month = String.valueOf(date.getMonthValue());
@@ -80,10 +81,9 @@ public class MetrocardDatabase {
         metroCards = loadSaveStrategy.load();
     }
 
+    // SAVE
     public void save() throws IOException {
         loadSaveStrategy.save(metroCards);
     }
-
-    // SAVE
 
 }

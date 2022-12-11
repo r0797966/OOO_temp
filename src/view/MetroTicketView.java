@@ -14,8 +14,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.facade.MetroFacade;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MetroTicketView extends GridPane {
@@ -23,6 +25,7 @@ public class MetroTicketView extends GridPane {
 	private ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
 	private Button newCardButton = new Button("New metro card");
 	private MetroTicketViewController metroTicketViewController;
+	private LoadSaveStrategy loadSaveStrategy;
 		
 	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
 		stage.setTitle("METROTICKET VIEW");
@@ -41,9 +44,6 @@ public class MetroTicketView extends GridPane {
 		addRidesView(root);
 	}
 
-	public void metroTicketShow(VBox root){
-	}
-
 	// NEW CARD VBOX
 	public void newCardView(VBox root){
 		VBox vBox = new VBox();
@@ -53,7 +53,11 @@ public class MetroTicketView extends GridPane {
 		// NEW CARD BUTTON
 		newCardButton.setDisable(true);
 		newCardButton.setOnAction(e -> {
-			metroTicketViewController.newMetrocard();
+			try {
+				metroTicketViewController.newMetrocard();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
 		});
 		// TEXT
 		Text text1 = new Text("Metro card price is 15€ - 2 free rides included");

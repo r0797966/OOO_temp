@@ -58,13 +58,11 @@ public class MetroCardOverviewPane extends GridPane{
 		table.prefHeightProperty().bind(this.heightProperty());
 		table.prefWidthProperty().bind(this.widthProperty());
 		this.add(table, 0, 1, 1, 1);
-
 	}
 
 	public void updateMetroCardList(ArrayList<MetroCard> metroCards) {
 		this.metroCards = FXCollections.observableList(metroCards);
 		table.setItems(this.metroCards);
 		table.refresh();
-
 	}
 }
