@@ -31,9 +31,6 @@ public class MetroMain extends Application {
 		new MetroTicketView(metroTicketViewController);
 		new MetroStationView(metroStationViewController);
 
-		// test
-		MetroCard metroCard = new MetroCard(1, "02#2022", 5, 2);
-		TicketPriceFactory.createTicketPrice(true, true, false, metroCard);
 
 	}
 	

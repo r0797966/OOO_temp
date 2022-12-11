@@ -21,7 +21,6 @@ public class TicketPriceFactory {
 
     // createTicketPrice(is64Min, isStudent, metroCard): TicketPrice
     public static TicketPrice createTicketPrice(boolean is64Min, boolean isStudent, boolean isFrequent, MetroCard metroCard) {
-        // TODO: implement
         try {
             InputStream input = new FileInputStream("src/bestanden/settings.properties");
             Properties properties = new Properties();
@@ -44,7 +43,7 @@ public class TicketPriceFactory {
                 ticketPrice = new ChristmasLeaveDiscount(ticketPrice);
             }
             metroCard.setTicketPrice(ticketPrice);
-            System.out.println(ticketPrice.getPrice());
+            return ticketPrice;
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

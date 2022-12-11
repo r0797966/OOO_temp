@@ -3,6 +3,7 @@ package controller;
 import model.observer.Observer;
 import model.facade.MetroEventsEnum;
 import model.facade.MetroFacade;
+import model.ticketPriceDecorator.TicketPrice;
 import view.MetroTicketView;
 
 import java.io.IOException;
@@ -37,5 +38,8 @@ public class MetroTicketViewController implements Observer {
         model.newMetrocard();
     }
 
+    public TicketPrice addRidesInformation(Integer id, int rides, boolean isStudent, boolean isSenior) {
+        return model.addRidesInformation(id, rides, isStudent, isSenior);
+    }
 
 }

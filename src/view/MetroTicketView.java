@@ -17,16 +17,18 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.facade.MetroFacade;
+import model.ticketPriceDecorator.TicketPrice;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class MetroTicketView extends GridPane {
 	private Stage stage = new Stage();
-	private ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
-	private Button newCardButton = new Button("New metro card");
-	private MetroTicketViewController metroTicketViewController;
-	private LoadSaveStrategy loadSaveStrategy;
+	private final MetroTicketViewController metroTicketViewController;
+
+	private final ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
+	private final Button newCardButton = new Button("New metro card");
+	private final Button addRides = new Button("Add extra rides to metro card");
 		
 	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
 		stage.setTitle("METROTICKET VIEW");
@@ -38,9 +40,10 @@ public class MetroTicketView extends GridPane {
 		stage.setScene(scene);
 		stage.sizeToScene();			
 		stage.show();
-		this.metroTicketViewController = metroTicketViewController;
 
+		this.metroTicketViewController = metroTicketViewController;
 		metroTicketViewController.setView(this);
+
 		newCardView(root);
 		addRides(root);
 		informationView(root);
@@ -82,7 +85,7 @@ public class MetroTicketView extends GridPane {
 		HBox hBox2 = new HBox();
 		hBox2.setSpacing(16);
 		Label label2 = new Label("Number of rides:");
-		TextField textField = new TextField();
+		TextField textField = new TextField("1");
 		textField.setPrefWidth(80);
 		hBox2.getChildren().add(label2);
 		hBox2.getChildren().add(textField);
@@ -90,8 +93,8 @@ public class MetroTicketView extends GridPane {
 		// higher education student?
 		HBox hBox3 = new HBox();
 		hBox3.setSpacing(10);
-		CheckBox checkBox = new CheckBox("Higher education student?");
-		hBox3.getChildren().add(checkBox);
+		CheckBox studies = new CheckBox("Higher education student?");
+		hBox3.getChildren().add(studies);
 
 		// age range
 		HBox hBox4 = new HBox();
@@ -108,7 +111,14 @@ public class MetroTicketView extends GridPane {
 		hBox4.getChildren().add(radioButton3);
 
 		// add rides button
-		Button button = new Button("Add extra rides to metro card");
+		addRides.setDisable(true);
+		addRides.setOnAction(e -> {
+			Integer id = metroCardIdList.getValue();
+			int rides = Integer.parseInt(textField.getText());
+			boolean student = studies.isSelected();
+			boolean senior = radioButton3.isSelected();
+			addRidesInformation(id, rides, student, senior);
+		});
 
 		VBox vBox = new VBox();
 		vBox.setSpacing(10);
@@ -118,7 +128,7 @@ public class MetroTicketView extends GridPane {
 		vBox.getChildren().add(hBox2);
 		vBox.getChildren().add(hBox3);
 		vBox.getChildren().add(hBox4);
-		vBox.getChildren().add(button);
+		vBox.getChildren().add(addRides);
 		root.getChildren().add(vBox);
 	}
 
@@ -165,5 +175,11 @@ public class MetroTicketView extends GridPane {
 		metroCardIdList.setItems(FXCollections.observableArrayList(ids));
 		metroCardIdList.getSelectionModel().selectFirst();
 		newCardButton.setDisable(false);
+		addRides.setDisable(false);
+	}
+
+	public void addRidesInformation(Integer id, int rides, boolean student, boolean senior){
+		// TODO
+		metroTicketViewController.addRidesInformation(id, rides, student, senior);
 	}
 }

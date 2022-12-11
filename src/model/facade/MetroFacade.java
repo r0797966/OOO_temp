@@ -6,6 +6,7 @@ import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
 import model.observer.Observer;
 import model.observer.Subject;
+import model.ticketPriceDecorator.TicketPrice;
 import model.ticketPriceDecorator.TicketPriceFactory;
 
 import java.io.FileInputStream;
@@ -64,6 +65,11 @@ public class MetroFacade implements Subject {
     public void newMetrocard() throws IOException {
         metrocardDatabase.newMetrocard();
         notifyObservers(MetroEventsEnum.BUY_METROCARD);
+    }
+
+    // ADDRIDESINFORMATION
+    public TicketPrice addRidesInformation(int id, int rides, boolean isStudent, boolean isSenior) {
+        return metrocardDatabase.addRidesInformation(id, rides, isStudent, isSenior);
     }
 
     // SUBJECT

@@ -3,15 +3,11 @@ package model.database;
 import model.MetroCard;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
-import model.database.loadSaveStrategies.MetrocardsExcelLoadSaveStrategy;
-import model.database.loadSaveStrategies.MetrocardsTekstLoadSaveStrategy;
-import model.database.utilities.TekstLoadSaveTemplate;
+import model.ticketPriceDecorator.TicketPrice;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -50,7 +46,6 @@ public class MetrocardDatabase {
     }
 
     public ArrayList<Integer> getMetroCardIdList() {
-        // TODO: implement
         // return ids from metroCards
         ArrayList<Integer> ids = new ArrayList<>();
         for(Map.Entry<Integer, MetroCard> entry : metroCards.entrySet()) {
@@ -76,6 +71,14 @@ public class MetrocardDatabase {
         }
     }
 
+    public TicketPrice addRidesInformation(Integer id, int rides, boolean isStudent, boolean isWeekend) {
+        // TODO: implement
+        MetroCard metroCard = metroCards.get(id);
+        System.out.println(metroCard);
+        System.out.println(metroCards.containsKey(id)); // FALSE???
+        return null;
+    }
+
     // LOAD
     public void load() throws IOException {
         metroCards = loadSaveStrategy.load();
@@ -85,5 +88,4 @@ public class MetrocardDatabase {
     public void save() throws IOException {
         loadSaveStrategy.save(metroCards);
     }
-
 }
