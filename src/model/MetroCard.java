@@ -60,6 +60,14 @@ public class MetroCard {
         this.verbruikteTickets = verbruikteTickets;
     }
 
+    public TicketPrice getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(TicketPrice ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
     // METHODS
     @Override
     public String toString(){

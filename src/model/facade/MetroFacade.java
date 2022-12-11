@@ -29,9 +29,8 @@ public class MetroFacade implements Subject {
             InputStream input = new FileInputStream("src/bestanden/settings.properties");
             Properties properties = new Properties();
             properties.load(input);
-            LoadSaveStrategy loadSaveStrategy = LoadSaveStrategyFactory.createLoadSaveStrategy(properties.getProperty("filetype").toUpperCase());
 
-            metrocardDatabase.setLoadSaveStrategy(loadSaveStrategy);
+            metrocardDatabase.setLoadSaveStrategy(LoadSaveStrategyFactory.createLoadSaveStrategy(properties.getProperty("filetype").toUpperCase()));
             metrocardDatabase.load();
 
             notifyObservers(MetroEventsEnum.OPEN_METROSTATION);
