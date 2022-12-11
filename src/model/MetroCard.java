@@ -1,10 +1,13 @@
 package model;
 
+import model.ticketPriceDecorator.TicketPrice;
+
 public class MetroCard {
     private int metrokaartID;
     private String datum;
     private int beschikbareTickets;
     private int verbruikteTickets;
+    private TicketPrice ticketPrice;
 
     // CONSTRUCTOR
     public MetroCard(int id, String datum, int beschikbaar, int verbruikt) {

@@ -6,6 +6,7 @@ import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
 import model.observer.Observer;
 import model.observer.Subject;
+import model.ticketPriceDecorator.TicketPriceFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
