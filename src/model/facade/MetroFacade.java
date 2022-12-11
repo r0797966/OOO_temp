@@ -34,6 +34,7 @@ public class MetroFacade implements Subject {
             metrocardDatabase.load();
 
             notifyObservers(MetroEventsEnum.OPEN_METROSTATION);
+            input.close();
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

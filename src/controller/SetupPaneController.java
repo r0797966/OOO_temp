@@ -21,7 +21,13 @@ public class SetupPaneController implements Observer {
     @Override
     public void update(MetroEventsEnum event) {
         switch (event) {
-
+            case OPEN_METROSTATION:
+                openSetup();
+                break;
         }
+    }
+
+    public void openSetup() {
+        view.openSetup();
     }
 }

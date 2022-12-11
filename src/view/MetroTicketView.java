@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class MetroTicketView extends GridPane {
 	private Stage stage = new Stage();
 	private ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
+	private Button newCardButton = new Button("New metro card");
 		
 	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
 		stage.setTitle("METROTICKET VIEW");
@@ -46,7 +47,7 @@ public class MetroTicketView extends GridPane {
 		vBox1.setSpacing(10);
 		vBox1.setPadding(new Insets(10, 10, 10, 10));
 		// NEW CARD BUTTON
-		Button newCardButton = new Button("New metro card");
+		newCardButton.setDisable(true);
 		newCardButton.setOnAction(e -> {
 			System.out.println("New metro card");
 			metroTicketViewController.newMetrocard();
@@ -74,5 +75,7 @@ public class MetroTicketView extends GridPane {
 	// UPDATEMETROCARDIDLIST(IDs ArrayList<Integer>)
 	public void updateMetroCardIdList(ArrayList<Integer> ids) {
 		metroCardIdList.setItems(FXCollections.observableArrayList(ids));
+		metroCardIdList.getSelectionModel().selectFirst();
+		newCardButton.setDisable(false);
 	}
 }

@@ -1,6 +1,7 @@
 package view.panels;
 
 import controller.SetupPaneController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.ChoiceBox;
@@ -12,6 +13,7 @@ import java.util.Properties;
 
 public class SetupPane extends GridPane {
     private ChoiceBox choiceBox;
+    Button saveButton = new Button("Save and exit");
 
     public SetupPane(SetupPaneController setupPaneController) {
         this.setPadding(new Insets(5, 5, 5, 5));
@@ -27,10 +29,11 @@ public class SetupPane extends GridPane {
         choiceBox = new ChoiceBox(FXCollections.observableArrayList(
                 "tekst", "excel")
         );
+        choiceBox.getSelectionModel().selectFirst();
         this.add(choiceBox, 0, 0, 1, 1);
 
         // SAVE BUTTON
-        Button saveButton = new Button("Save");
+        saveButton.setDisable(true);
         saveButton.setOnAction(e ->
                 {
                     String value = (String) choiceBox.getValue();
@@ -43,13 +46,17 @@ public class SetupPane extends GridPane {
 
                          properties.store(output, "Changed filetype to " + value);
                          file.close();
-
+                         // kan waarschijnlijk beter
+                         Platform.exit();
                      } catch (IOException ex) {
                          System.out.println(ex.getMessage());
                 }
                     });
         this.add(saveButton, 0, 1,  1, 1);
+    }
 
+    public void openSetup() {
+        saveButton.setDisable(false);
     }
 
 
