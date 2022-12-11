@@ -5,8 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -41,14 +43,33 @@ public class MetroStationView {
 		gate1.setSpacing(10);
 		gate1.setPadding(new Insets(10, 10, 10, 10));
 
+		// metrocard id
 		Text title1 = new Text("Gate 1");
 		Label label = new Label("MetroCardID:");
-		metroCardIdList.setMinWidth(100);
+		metroCardIdList.setPrefWidth(125);
 		metroCardIdList.getSelectionModel().selectFirst();
+
+		// scan card
+		Button scanCardButton = new Button("Scan card");
+		scanCardButton.setPrefWidth(125);
+
+		// walk through gate
+		Button walkThroughGateButton = new Button("Walk through gate");
+		walkThroughGateButton.setPrefWidth(125);
+
+		// information
+		TextField information = new TextField("");
+		information.setEditable(false);
+		information.setPrefWidth(125);
 
 		gate1.getChildren().add(title1);
 		gate1.getChildren().add(label);
 		gate1.getChildren().add(metroCardIdList);
+		gate1.getChildren().add(scanCardButton);
+		gate1.getChildren().add(walkThroughGateButton);
+		gate1.getChildren().add(information);
+
+		gate1.setStyle("-fx-background-color: grey;");
 
 		root.getChildren().add(gate1);
 	}

@@ -67,8 +67,6 @@ public class MetrocardDatabase {
         String datum = month + "#" + year;
         // 2 gratis tickets
         MetroCard newCard = new MetroCard(id, datum, 2, 0);
-        System.out.println(newCard.getMetrokaartID());
-        System.out.println("New metrocard created: " + newCard);
         metroCards.put(id, newCard);
         try {
             save();
