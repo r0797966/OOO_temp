@@ -44,6 +44,7 @@ public class MetroStationView {
 		VBox gate1 = new VBox();
 		gate1.setSpacing(10);
 		gate1.setPadding(new Insets(10, 10, 10, 10));
+		gate1.setStyle("-fx-background-color: grey;");
 
 		// metrocard id
 		Text title1 = new Text("Gate 1");

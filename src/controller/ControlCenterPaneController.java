@@ -28,7 +28,7 @@ public class ControlCenterPaneController implements Observer {
                 reloadMetrostation();
                 break;
             case BUY_TICKETS:
-                // toevoegen # verkochte tickets aan de lijst
+                newTickets();
                 break;
         }
 
@@ -41,5 +41,9 @@ public class ControlCenterPaneController implements Observer {
 
     public void reloadMetrostation() throws IOException {
         model.reloadMetroStation();
+    }
+
+    public void newTickets() {
+        view.newTickets(model.getTicketCount(), model.getPriceCount());
     }
 }

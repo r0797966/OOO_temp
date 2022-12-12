@@ -78,6 +78,14 @@ public class MetroFacade implements Subject {
         notifyObservers(MetroEventsEnum.BUY_TICKETS);
     }
 
+    public int getTicketCount(){
+        return metrocardDatabase.getTicketCount();
+    }
+
+    public double getPriceCount(){
+        return metrocardDatabase.getPriceCount();
+    }
+
     // getPrice(): double
 
     // getPriceText(): String
