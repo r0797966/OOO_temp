@@ -22,9 +22,8 @@ public class MetroCardOverviewPaneController implements Observer {
     public void update(MetroEventsEnum event) {
         switch (event) {
             case OPEN_METROSTATION:
-                getMetroCardList();
-                break;
             case BUY_METROCARD:
+            case BUY_TICKETS:
                 getMetroCardList();
                 break;
         }

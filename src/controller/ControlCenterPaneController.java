@@ -27,7 +27,9 @@ public class ControlCenterPaneController implements Observer {
             case BUY_METROCARD:
                 reloadMetrostation();
                 break;
-
+            case BUY_TICKETS:
+                // toevoegen # verkochte tickets aan de lijst
+                break;
         }
 
     }

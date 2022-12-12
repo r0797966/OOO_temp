@@ -33,8 +33,8 @@ public MetrocardsTekstLoadSaveStrategy() throws IOException {
     }
 
     @Override
-    public String getKey(String[] tokens){
-        return tokens[0];
+    public Integer getKey(String[] tokens){
+        return Integer.parseInt(tokens[0]);
     }
 
 

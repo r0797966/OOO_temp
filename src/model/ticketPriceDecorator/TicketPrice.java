@@ -4,7 +4,8 @@ public abstract class TicketPrice {
     private boolean is64Plus;
     private boolean isStudent;
     private boolean isChristmas;
-    private boolean isFrequentCustomer; // 50+ verbruikte tickets
+    private boolean isFrequentCustomer;
+    private double price;// 50+ verbruikte tickets
 
     // getIs64Plus(): boolean
     public boolean getIs64Plus() {
@@ -44,6 +45,10 @@ public abstract class TicketPrice {
     // setIsFrequentCustomer(isFrequentCustomer: boolean): void
     public void setIsFrequentCustomer(boolean isFrequentCustomer) {
         this.isFrequentCustomer = isFrequentCustomer;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     // getPrice(): double // abstract

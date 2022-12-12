@@ -56,7 +56,6 @@ public class MetrocardDatabase {
     }
 
     public void newMetrocard() {
-        System.out.println(loadSaveStrategy);
         int id = getAantalMetroCards() + 1;
         LocalDate date = LocalDate.now();
         String month = String.valueOf(date.getMonthValue());
@@ -73,23 +72,18 @@ public class MetrocardDatabase {
     }
 
     public TicketPrice addRidesInformation(Integer id, int rides, boolean isStudent, boolean isSenior) {
-        // TODO: implement
-        MetroCard metroCard = metroCards.get(id);
-        System.out.println(metroCard); // NULL??
-        System.out.println(metroCards.containsKey(id)); // FALSE???
+        MetroCard metroCard = metroCards.get(1);
 
         // boolean isFrequent
         boolean isFrequent = false;
 
         // bereken ticketPrice met rides + isStudent + isSenior + aantalVerbuikteTickets (50+?)
-        /*if(metroCard.getVerbruikeTickets() > 50) {
+        if(metroCard.getVerbruikeTickets() > 50) {
             isFrequent = true;
         }
-        TicketPriceFactory.createTicketPrice(isSenior, isStudent, isFrequent, metroCard);
-         */
 
-        //metroCard.setTicketPrice() via createTicketPrice
-        return null;
+        metroCard.setTicketPrice(TicketPriceFactory.createTicketPrice(isSenior, isStudent, isFrequent, metroCard));
+        return metroCard.getTicketPrice();
     }
 
     // LOAD
@@ -100,5 +94,10 @@ public class MetrocardDatabase {
     // SAVE
     public void save() throws IOException {
         loadSaveStrategy.save(metroCards);
+    }
+
+    public void addRides(int id, int rides) {
+        MetroCard metroCard = metroCards.get(id);
+        metroCard.setBeschikbareTickets(metroCard.getBeschikbareTickets() + rides);
     }
 }

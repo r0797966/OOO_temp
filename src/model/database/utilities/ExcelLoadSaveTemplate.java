@@ -50,9 +50,7 @@ public abstract class ExcelLoadSaveTemplate<K,V> {
                 row.add(token);
             }
             data.add(row);
-            System.out.println(data);
         }
-        System.out.println(data);
 
         ExcelPlugin excelPlugin = new ExcelPlugin();
         try {

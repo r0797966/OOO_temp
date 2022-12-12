@@ -15,12 +15,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.MetroCard;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.facade.MetroFacade;
 import model.ticketPriceDecorator.TicketPrice;
 
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 public class MetroTicketView extends GridPane {
 	private Stage stage = new Stage();
@@ -28,7 +33,11 @@ public class MetroTicketView extends GridPane {
 
 	private final ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
 	private final Button newCardButton = new Button("New metro card");
+	private final TextField numberRides = new TextField("1");
 	private final Button addRides = new Button("Add extra rides to metro card");
+	private final TextField ticketPrice = new TextField("");
+	private final Button confirmButton = new Button("Confirm");
+	private final Text priceText = new Text("");
 		
 	public MetroTicketView(MetroTicketViewController metroTicketViewController) {
 		stage.setTitle("METROTICKET VIEW");
@@ -85,10 +94,9 @@ public class MetroTicketView extends GridPane {
 		HBox hBox2 = new HBox();
 		hBox2.setSpacing(16);
 		Label label2 = new Label("Number of rides:");
-		TextField textField = new TextField("1");
-		textField.setPrefWidth(80);
+		numberRides.setPrefWidth(80);
 		hBox2.getChildren().add(label2);
-		hBox2.getChildren().add(textField);
+		hBox2.getChildren().add(numberRides);
 
 		// higher education student?
 		HBox hBox3 = new HBox();
@@ -114,7 +122,7 @@ public class MetroTicketView extends GridPane {
 		addRides.setDisable(true);
 		addRides.setOnAction(e -> {
 			Integer id = metroCardIdList.getValue();
-			int rides = Integer.parseInt(textField.getText());
+			int rides = Integer.parseInt(numberRides.getText());
 			boolean student = studies.isSelected();
 			boolean senior = radioButton3.isSelected();
 			addRidesInformation(id, rides, student, senior);
@@ -143,23 +151,30 @@ public class MetroTicketView extends GridPane {
 		hBox5.setSpacing(10);
 		hBox5.setAlignment(Pos.CENTER_LEFT);
 		Label label3 = new Label("Total price:");
-		TextField textField2 = new TextField("to change");
-		textField2.setPrefWidth(80);
-		textField2.setEditable(false);
+		ticketPrice.setPrefWidth(80);
+		ticketPrice.setEditable(false);
 		hBox5.getChildren().add(label3);
-		hBox5.getChildren().add(textField2);
+		hBox5.getChildren().add(ticketPrice);
 		// text
-		Text text = new Text("This needs to change depending on choice (price)");
 		// confirm or cancel
 		HBox hBox6 = new HBox();
 		hBox6.setSpacing(10);
-		Button button2 = new Button("Confirm");
-		Button button3 = new Button("Cancel");
-		hBox6.getChildren().add(button2);
-		hBox6.getChildren().add(button3);
+		confirmButton.setOnAction(e -> {
+			int id = metroCardIdList.getValue();
+			int rides = Integer.parseInt(numberRides.getText());
+			metroTicketViewController.addRides(id, rides);
+		});
+		Button cancelButton = new Button("Cancel");
+		cancelButton.setOnAction(e -> {
+			metroCardIdList.getSelectionModel().selectFirst();
+			numberRides.setText("1");
+			ticketPrice.setText("");
+		});
+		hBox6.getChildren().add(confirmButton);
+		hBox6.getChildren().add(cancelButton);
 
 		vBox2.getChildren().add(hBox5);
-		vBox2.getChildren().add(text);
+		vBox2.getChildren().add(priceText);
 		vBox2.getChildren().add(hBox6);
 
 		// add boxes
@@ -179,7 +194,14 @@ public class MetroTicketView extends GridPane {
 	}
 
 	public void addRidesInformation(Integer id, int rides, boolean student, boolean senior){
-		// TODO
 		metroTicketViewController.addRidesInformation(id, rides, student, senior);
+		double price = metroTicketViewController.addRidesInformation(id, rides, student, senior).getPrice();
+		price *= Integer.parseInt(numberRides.getText());
+		// round price to 2 after comma
+		DecimalFormat df = new DecimalFormat("#.##");
+		df.setRoundingMode(RoundingMode.CEILING);
+		String priceString = df.format(price);
+		ticketPrice.setText(priceString);
+		priceText.setText(metroTicketViewController.addRidesInformation(id, rides, student, senior).getPriceText());
 	}
 }
