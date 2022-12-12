@@ -159,17 +159,20 @@ public class MetroTicketView extends GridPane {
 		// confirm or cancel
 		HBox hBox6 = new HBox();
 		hBox6.setSpacing(10);
+		confirmButton.setDisable(true);
 		confirmButton.setOnAction(e -> {
 			int id = metroCardIdList.getValue();
 			int rides = Integer.parseInt(numberRides.getText());
 			double price = Double.parseDouble(ticketPrice.getText());
 			metroTicketViewController.addRides(id, rides, price);
+			numberRides.setEditable(true);
 		});
 		Button cancelButton = new Button("Cancel");
 		cancelButton.setOnAction(e -> {
 			metroCardIdList.getSelectionModel().selectFirst();
 			numberRides.setText("1");
 			ticketPrice.setText("");
+			numberRides.setEditable(true);
 		});
 		hBox6.getChildren().add(confirmButton);
 		hBox6.getChildren().add(cancelButton);
@@ -204,5 +207,7 @@ public class MetroTicketView extends GridPane {
 		String priceString = df.format(price);
 		ticketPrice.setText(priceString);
 		priceText.setText(metroTicketViewController.addRidesInformation(id, rides, student, senior).getPriceText());
+		confirmButton.setDisable(false);
+		numberRides.setEditable(false);
 	}
 }
