@@ -73,8 +73,8 @@ public class MetroFacade implements Subject {
     }
 
     // ADDRIDES
-    public void addRides(int id, int rides) {
-        metrocardDatabase.addRides(id, rides);
+    public void addRides(int id, int rides, double price) {
+        metrocardDatabase.addRides(id, rides, price);
         notifyObservers(MetroEventsEnum.BUY_TICKETS);
     }
 

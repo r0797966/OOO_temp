@@ -162,7 +162,8 @@ public class MetroTicketView extends GridPane {
 		confirmButton.setOnAction(e -> {
 			int id = metroCardIdList.getValue();
 			int rides = Integer.parseInt(numberRides.getText());
-			metroTicketViewController.addRides(id, rides);
+			double price = Double.parseDouble(ticketPrice.getText());
+			metroTicketViewController.addRides(id, rides, price);
 		});
 		Button cancelButton = new Button("Cancel");
 		cancelButton.setOnAction(e -> {

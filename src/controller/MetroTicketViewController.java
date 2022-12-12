@@ -42,7 +42,7 @@ public class MetroTicketViewController implements Observer {
         return model.addRidesInformation(id, rides, isStudent, isSenior);
     }
 
-    public void addRides(int id, int rides) {
-        model.addRides(id, rides);
+    public void addRides(int id, int rides, double price) {
+        model.addRides(id, rides, price);
     }
 }

@@ -15,6 +15,7 @@ import java.util.HashMap;
 public class MetrocardDatabase {
     private HashMap<Integer, MetroCard> metroCards;
     private LoadSaveStrategy loadSaveStrategy;
+    private double priceCount = 0;
 
     // CONSTRUCTOR
     public MetrocardDatabase() {
@@ -27,6 +28,15 @@ public class MetrocardDatabase {
     // GETTERS
     public Map<Integer, MetroCard> getMetroCards() {
         return metroCards;
+    }
+
+    public double getPriceCount() {
+        return priceCount;
+    }
+
+    // SETTERS
+    public void setPriceCount(double priceCount) {
+        this.priceCount = priceCount;
     }
 
     // METHODS
@@ -86,6 +96,18 @@ public class MetrocardDatabase {
         return metroCard.getTicketPrice();
     }
 
+    public void addRides(int id, int rides, double price) {
+        MetroCard metroCard = metroCards.get(id);
+        metroCard.setBeschikbareTickets(metroCard.getBeschikbareTickets() + rides);
+        setPriceCount(getPriceCount() + price);
+        System.out.println(priceCount);
+        try {
+            save();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // LOAD
     public void load() throws IOException {
         metroCards = loadSaveStrategy.load();
@@ -94,10 +116,5 @@ public class MetrocardDatabase {
     // SAVE
     public void save() throws IOException {
         loadSaveStrategy.save(metroCards);
-    }
-
-    public void addRides(int id, int rides) {
-        MetroCard metroCard = metroCards.get(id);
-        metroCard.setBeschikbareTickets(metroCard.getBeschikbareTickets() + rides);
     }
 }

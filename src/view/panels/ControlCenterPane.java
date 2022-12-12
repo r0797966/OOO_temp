@@ -10,17 +10,24 @@ import model.facade.MetroFacade;
 import java.io.IOException;
 
 public class ControlCenterPane extends GridPane {
+    ControlCenterPaneController controlCenterPaneController;
 
     public ControlCenterPane(ControlCenterPaneController controlCenterPaneController) throws IOException {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
 
-        showControlCenter(controlCenterPaneController);
         controlCenterPaneController.setView(this);
+        this.controlCenterPaneController = controlCenterPaneController;
+
+        openStationButton();
     }
 
-    public void showControlCenter(ControlCenterPaneController controlCenterPaneController) throws IOException {
+    public void stationInformation(){
+
+    }
+
+    public void openStationButton() throws IOException {
         // open metrostation button
         Button openButton = new Button("Open metrostation");
         openButton.setOnAction(e ->
