@@ -1,6 +1,7 @@
 package model.facade;
 
 import model.MetroCard;
+import model.MetroStation;
 import model.database.MetrocardDatabase;
 import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
@@ -19,6 +20,7 @@ import java.util.Properties;
 public class MetroFacade implements Subject {
     private MetrocardDatabase metrocardDatabase = new MetrocardDatabase();
     private List<Observer> observers;
+    private MetroStation metroStation = new MetroStation();
 
     public MetroFacade() {
         observers = new ArrayList<>();
@@ -90,7 +92,25 @@ public class MetroFacade implements Subject {
 
     // getPriceText(): String
 
-    // scanMetroGate(metroCardID, gateID)
+    public String scanMetroGate(int metroCardid, int gateid) {
+        MetroCard card = metrocardDatabase.scanMetroGate(metroCardid);
+        if (card.getBeschikbareTickets() > 0) {
+            metroStation.scanMetroGate(gateid);
+            metroStation.increaseNumberOfScannedCards(gateid);
+            card.scannedMetroGate();
+            return "Uw kaart is gescand.";
+        } else {
+           return metroStation.createAlert(gateid);
+        }
+    }
+
+
+
+
+
+
+
+
 
     // getMetroTicketDiscountList(): ArrayList<String>
 

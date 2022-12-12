@@ -74,5 +74,12 @@ public class MetroCard {
         return  getMetrokaartID() + ";" + getDatum() + ";" + getBeschikbareTickets() + ";" + getVerbruikeTickets();
     }
 
+    public void scannedMetroGate() {
+        beschikbareTickets--;
+        verbruikteTickets++;
+    }
+
+
+
 
 }

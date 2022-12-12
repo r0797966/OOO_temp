@@ -126,4 +126,9 @@ public class MetrocardDatabase {
     public void save() throws IOException {
         loadSaveStrategy.save(metroCards);
     }
+
+    public MetroCard scanMetroGate(int metroCardid) {
+
+        return  metroCards.get(metroCardid);
+    }
 }

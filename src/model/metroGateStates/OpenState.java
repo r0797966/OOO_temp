@@ -1,4 +1,4 @@
 package model.metroGateStates;
 
-public class OpenState {
+public class OpenState extends MetroGateState {
 }

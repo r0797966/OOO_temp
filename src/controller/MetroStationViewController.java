@@ -31,5 +31,10 @@ public class MetroStationViewController implements Observer {
         view.updateMetroCardIdList(model.getMetroCardIdList());
     }
 
+    public void scanMetroGate(int metrocardid, int gateid) {
+        view.scanMetroGate(model.scanMetroGate(metrocardid, gateid));
+    }
+
+
 
 }

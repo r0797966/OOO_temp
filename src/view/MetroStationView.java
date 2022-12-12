@@ -23,6 +23,7 @@ public class MetroStationView {
 	private Stage stage = new Stage();
 	private ChoiceBox<Integer> metroCardIdList = new ChoiceBox<Integer>();
 	private MetroStationViewController metroStationViewController;
+	TextField information = new TextField("");
 	
 	public MetroStationView(MetroStationViewController metroStationViewController) {
 		stage.setTitle("METRO STATION VIEW");
@@ -55,13 +56,16 @@ public class MetroStationView {
 		// scan card
 		Button scanCardButton = new Button("Scan card");
 		scanCardButton.setPrefWidth(125);
+		scanCardButton.setOnAction(e -> {
+			metroStationViewController.scanMetroGate(metroCardIdList.getValue(), 1);
+		});
 
 		// walk through gate
 		Button walkThroughGateButton = new Button("Walk through gate");
 		walkThroughGateButton.setPrefWidth(125);
 
 		// information
-		TextField information = new TextField("");
+
 		information.setEditable(false);
 		information.setPrefWidth(125);
 
@@ -79,5 +83,11 @@ public class MetroStationView {
 	public void updateMetroCardIdList(ArrayList<Integer> ids) {
 		metroCardIdList.setItems(FXCollections.observableArrayList(ids));
 		metroCardIdList.getSelectionModel().selectFirst();
+	}
+
+
+
+	public void scanMetroGate(String scanMetroGate) {
+		information.setText(scanMetroGate);
 	}
 }
