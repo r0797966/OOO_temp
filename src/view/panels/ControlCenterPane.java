@@ -34,6 +34,7 @@ public class ControlCenterPane extends GridPane {
 
         stationInformation(root);
         openStationButton(root);
+        closeStationButton(root);
     }
 
     public void stationInformation(VBox root) {
@@ -70,6 +71,17 @@ public class ControlCenterPane extends GridPane {
                     openButton.setDisable(true);
                 });
         root.getChildren().add(openButton);
+    }
+
+    public void closeStationButton(VBox root){
+        Button closeButton = new Button("Close metrostation");
+        closeButton.setOnAction(e ->
+                {
+                    controlCenterPaneController.closeStation();
+                    // exit the program
+                    System.exit(0);
+                });
+        root.getChildren().add(closeButton);
     }
 
     // METHODES

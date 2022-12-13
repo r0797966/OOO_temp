@@ -88,13 +88,9 @@ public class MetroFacade implements Subject {
         return metrocardDatabase.getPriceCount();
     }
 
-    // getPrice(): double
-
-    // getPriceText(): String
-
     public String scanMetroGate(int metroCardid, int gateid) {
         MetroCard card = metrocardDatabase.scanMetroGate(metroCardid);
-        if (card.getBeschikbareTickets() > 0) {
+        if (!card.isValidCard()) {
             metroStation.scanMetroGate(gateid);
             metroStation.increaseNumberOfScannedCards(gateid);
             card.scannedMetroGate();
@@ -106,13 +102,9 @@ public class MetroFacade implements Subject {
 
 
 
-
-
-
-
-
-
-    // getMetroTicketDiscountList(): ArrayList<String>
+    public void closeStation(){
+        metrocardDatabase.save();
+    }
 
     // SUBJECT
     @Override

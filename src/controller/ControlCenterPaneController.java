@@ -46,4 +46,8 @@ public class ControlCenterPaneController implements Observer {
     public void newTickets() {
         view.newTickets(model.getTicketCount(), model.getPriceCount());
     }
+
+    public void closeStation() {
+        model.closeStation();
+    }
 }

@@ -83,11 +83,7 @@ public class MetrocardDatabase {
         // 2 gratis tickets
         MetroCard newCard = new MetroCard(id, datum, 2, 0);
         metroCards.put(id, newCard);
-        try {
-            save();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        save();
     }
 
     public TicketPrice addRidesInformation(Integer id, int rides, boolean isStudent, boolean isSenior) {
@@ -110,11 +106,7 @@ public class MetrocardDatabase {
         metroCard.setBeschikbareTickets(metroCard.getBeschikbareTickets() + rides);
         setPriceCount(getPriceCount() + price);
         setTicketCount(getTicketCount() + rides);
-        try {
-            save();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        save();
     }
 
     // LOAD
@@ -123,8 +115,12 @@ public class MetrocardDatabase {
     }
 
     // SAVE
-    public void save() throws IOException {
-        loadSaveStrategy.save(metroCards);
+    public void save()  {
+        try {
+            loadSaveStrategy.save(metroCards);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public MetroCard scanMetroGate(int metroCardid) {

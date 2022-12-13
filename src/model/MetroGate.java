@@ -37,7 +37,7 @@ public class MetroGate {
     }
 
     public String scanMetroGate() {
-       return state.scanMetroGate();
+       return state.scanMetroGate(context);
     }
 
     public void increaseNumberOfScannedCards() {

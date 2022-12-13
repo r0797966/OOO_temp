@@ -11,8 +11,8 @@ public class ClosedState extends MetroGateState {
     }
 
     @Override
-    public String scanMetroGate() {
-
+    public String scanMetroGate(MetroStateContext context) {
+        context.setState(new OpenState());
         return "0";
     }
 

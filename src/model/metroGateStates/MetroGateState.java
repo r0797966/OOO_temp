@@ -24,10 +24,8 @@ public abstract class MetroGateState {
         // increase number of scanned cards
         /// .... + 1
     }
-    public String scanMetroGate(){
+    public String scanMetroGate(MetroStateContext context){
         return "Gate is scanned";
-
-
     }
     public String walkThroughGate(MetroStateContext context){
         return "Person walks through gate";

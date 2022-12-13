@@ -2,6 +2,8 @@ package model;
 
 import model.ticketPriceDecorator.TicketPrice;
 
+import java.time.LocalDate;
+
 public class MetroCard {
     private int metrokaartID;
     private String datum;
@@ -75,10 +77,17 @@ public class MetroCard {
     }
 
     public void scannedMetroGate() {
-        beschikbareTickets--;
-        verbruikteTickets++;
+        setBeschikbareTickets(getBeschikbareTickets() - 1);
+        setVerbruikeTickets(getVerbruikeTickets() + 1);
     }
 
+    public boolean isValidCard() {
+        int month = Integer.parseInt(datum.split("#")[0]);
+        int year = Integer.parseInt(datum.split("#")[1]);
+        LocalDate date = LocalDate.of(year, month, 1);
+        // date is 1 year before now
+        return getBeschikbareTickets() == 0 || date.isBefore(LocalDate.now().minusYears(1));
+    }
 
 
 
