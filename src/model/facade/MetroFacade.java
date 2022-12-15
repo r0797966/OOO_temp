@@ -3,12 +3,10 @@ package model.facade;
 import model.MetroCard;
 import model.MetroStation;
 import model.database.MetrocardDatabase;
-import model.database.loadSaveStrategies.LoadSaveStrategy;
 import model.database.loadSaveStrategies.LoadSaveStrategyFactory;
 import model.observer.Observer;
 import model.observer.Subject;
 import model.ticketPriceDecorator.TicketPrice;
-import model.ticketPriceDecorator.TicketPriceFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -89,15 +87,27 @@ public class MetroFacade implements Subject {
     }
 
     public String scanMetroGate(int metroCardid, int gateid) {
+
         MetroCard card = metrocardDatabase.scanMetroGate(metroCardid);
         if (!card.isValidCard()) {
+
+/*
             metroStation.scanMetroGate(gateid);
+*/
             metroStation.increaseNumberOfScannedCards(gateid);
             card.scannedMetroGate();
-            return "Uw kaart is gescand.";
+            notifyObservers(MetroEventsEnum.SCAN_METROGATE);
+            return metroStation.scanMetroGate(gateid);
         } else {
            return metroStation.createAlert(gateid);
         }
+    }
+
+    public String walkThroughGate(int metrocardid, int gateid) {
+
+       return metroStation.walkThroughGate(gateid);
+
+
     }
 
 
@@ -127,4 +137,6 @@ public class MetroFacade implements Subject {
             }
         });
     }
+
+
 }

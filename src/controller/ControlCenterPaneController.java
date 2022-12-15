@@ -30,6 +30,9 @@ public class ControlCenterPaneController implements Observer {
             case BUY_TICKETS:
                 newTickets();
                 break;
+            case SCAN_METROGATE:
+                newTickets();
+                break;
         }
 
     }
@@ -40,6 +43,7 @@ public class ControlCenterPaneController implements Observer {
     }
 
     public void reloadMetrostation() throws IOException {
+
         model.reloadMetroStation();
     }
 
@@ -50,4 +54,5 @@ public class ControlCenterPaneController implements Observer {
     public void closeStation() {
         model.closeStation();
     }
+
 }

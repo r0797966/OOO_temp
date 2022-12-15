@@ -23,9 +23,11 @@ public class MetroCardOverviewPaneController implements Observer {
         switch (event) {
             case OPEN_METROSTATION:
             case BUY_METROCARD:
+            case SCAN_METROGATE:
             case BUY_TICKETS:
                 getMetroCardList();
                 break;
+
         }
     }
 

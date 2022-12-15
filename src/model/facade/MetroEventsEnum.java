@@ -5,4 +5,6 @@ public enum MetroEventsEnum {
     BUY_METROCARD,
     BUY_TICKETS,
     SCAN_METROGATE;
+
+
 }

@@ -36,5 +36,7 @@ public class MetroStationViewController implements Observer {
     }
 
 
-
+    public void walkThroughGate(int metrocardid, int gateid) {
+       view.walkThroughGate(model.walkThroughGate(metrocardid, gateid));
+    }
 }

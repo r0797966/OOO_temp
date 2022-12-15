@@ -63,6 +63,9 @@ public class MetroStationView {
 		// walk through gate
 		Button walkThroughGateButton = new Button("Walk through gate");
 		walkThroughGateButton.setPrefWidth(125);
+		walkThroughGateButton.setOnAction(e -> {
+			metroStationViewController.walkThroughGate(metroCardIdList.getValue(), 1);
+		});
 
 		// information
 
@@ -89,5 +92,9 @@ public class MetroStationView {
 
 	public void scanMetroGate(String scanMetroGate) {
 		information.setText(scanMetroGate);
+	}
+
+	public void walkThroughGate(String walkThroughGate) {
+		information.setText(walkThroughGate);
 	}
 }

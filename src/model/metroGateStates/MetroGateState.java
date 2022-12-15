@@ -1,7 +1,7 @@
 package model.metroGateStates;
 
 public abstract class MetroGateState {
-    ;
+
 
 
     public String openGate(MetroStateContext context){
@@ -12,7 +12,7 @@ public abstract class MetroGateState {
 
     }
     public String createAlert(MetroStateContext context){
-        return "Alert is created";
+        return "You can't do this ";
         
     }
     public String createWarning(MetroStateContext context){
@@ -31,18 +31,25 @@ public abstract class MetroGateState {
         return "Person walks through gate";
 
     }
-    public String activate(){
+    /*public String activate(){
         return "Gate is activated";
 
-    }
-    public String deactivate(){
+    }*/
+  /*  public String deactivate(){
         return "Gate is deactivated";
 
+    }*/
+
+    public void setClosedState(MetroStateContext context) {
+        context.setState(new ClosedState());
     }
 
+    public void activate(MetroStateContext context) {
 
+    }
 
-
+    public void deactivate(MetroStateContext context) {
+    }
 
 
     // scanMetroGate()
