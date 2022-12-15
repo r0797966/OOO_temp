@@ -39,7 +39,7 @@ public class MetroGate {
     }
 
     public String scanMetroGate() {
-
+        System.out.println(context.getState());
         return context.getState().scanMetroGate(context);
     }
 
@@ -49,7 +49,8 @@ public class MetroGate {
     }
 
     public String createAlert() {
-        System.out.println(context.getState());
+        System.out.println( "Alert "+context.getState());
+
           return context.getState().createAlert(context);
 
     }

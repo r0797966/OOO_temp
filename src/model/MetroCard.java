@@ -81,7 +81,7 @@ public class MetroCard {
         setVerbruikeTickets(getVerbruikeTickets() + 1);
     }
 
-    public boolean isValidCard() {
+    public boolean isNotValidCard() {
         int month = Integer.parseInt(datum.split("#")[0]);
         int year = Integer.parseInt(datum.split("#")[1]);
         LocalDate date = LocalDate.of(year, month, 1);

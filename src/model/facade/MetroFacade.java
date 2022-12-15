@@ -20,6 +20,8 @@ public class MetroFacade implements Subject {
     private List<Observer> observers;
     private MetroStation metroStation = new MetroStation();
 
+
+
     public MetroFacade() {
         observers = new ArrayList<>();
     }
@@ -89,7 +91,9 @@ public class MetroFacade implements Subject {
     public String scanMetroGate(int metroCardid, int gateid) {
 
         MetroCard card = metrocardDatabase.scanMetroGate(metroCardid);
-        if (!card.isValidCard()) {
+        if (!card.isNotValidCard()) {
+
+
 
 /*
             metroStation.scanMetroGate(gateid);
@@ -99,6 +103,7 @@ public class MetroFacade implements Subject {
             notifyObservers(MetroEventsEnum.SCAN_METROGATE);
             return metroStation.scanMetroGate(gateid);
         } else {
+
            return metroStation.createAlert(gateid);
         }
     }

@@ -12,16 +12,19 @@ public class ClosedState extends MetroGateState {
 
     @Override
     public String scanMetroGate(MetroStateContext context) {
+        context.setState(new OpenState());
         return "Card scanned";
     }
 
     @Override
     public void increaseNumberOfScannedCards(MetroStateContext context) {
-        context.setState(new OpenState());
+
         // add 1 to scanned cards
 
 
     }
+
+
 
     @Override
     public String createAlert(MetroStateContext context) {

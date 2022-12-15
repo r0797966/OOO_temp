@@ -12,7 +12,7 @@ public class MetroStation {
         metroGates.add(new MetroGate(1, "Gate 1"));
     }
 
-    public String   scanMetroGate(int gateid) {
+    public String scanMetroGate(int gateid) {
         for (MetroGate metroGate : metroGates) {
             if (metroGate.getGateID() == gateid) {
                return metroGate.scanMetroGate();
