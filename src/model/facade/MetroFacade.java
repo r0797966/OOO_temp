@@ -104,8 +104,7 @@ public class MetroFacade implements Subject {
     }
 
     public String walkThroughGate(int gateid) {
-        notifyObservers(MetroEventsEnum.WALKTHROUGH_GATE);
-       return metroStation.walkThroughGate(gateid);
+       return metroStation.walkThroughGate(gateid, this);
     }
 
 
@@ -145,5 +144,9 @@ public class MetroFacade implements Subject {
     public void deactivateGate(int gateid) {
         metroStation.deactivateGate(gateid);
         notifyObservers(MetroEventsEnum.ACTIVATE_GATE);
+    }
+
+    public String createAlert() {
+        return metroStation.createAlert(1);
     }
 }

@@ -49,8 +49,6 @@ public class MetroGate {
     }
 
     public String createAlert() {
-        System.out.println( "Alert "+context.getState());
-
           return context.getState().createAlert(context);
 
     }

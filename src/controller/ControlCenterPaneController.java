@@ -43,7 +43,7 @@ public class ControlCenterPaneController implements Observer {
     }
 
     private void addAlert() {
-       // view.addAlert(model.createAlert());
+       view.addAlert(model.createAlert());
     }
 
     // OPENMETROSTATION

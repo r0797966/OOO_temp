@@ -25,14 +25,6 @@ public abstract class MetroGateState {
         return createAlert(context);
 
     }
-    /*public String activate(){
-        return "Gate is activated";
-
-    }*/
-  /*  public String deactivate(){
-        return "Gate is deactivated";
-
-    }*/
 
 
     public String activate(MetroStateContext context) {
@@ -43,10 +35,5 @@ public abstract class MetroGateState {
         return "Gate is already inactive";
 
     }
-
-
-    // scanMetroGate()
-
-    // STATES
 
 }

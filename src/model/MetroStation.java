@@ -1,5 +1,9 @@
 package model;
 
+import model.facade.MetroEventsEnum;
+import model.facade.MetroFacade;
+import model.metroGateStates.OpenState;
+
 import java.util.ArrayList;
 
 public class MetroStation {
@@ -40,11 +44,16 @@ public class MetroStation {
 
     }
 
-    public String walkThroughGate(int gateid) {
+    public String walkThroughGate(int gateid, MetroFacade model) {
         for (MetroGate metroGate : metroGates) {
             if (metroGate.getGateID() == gateid) {
-                return metroGate.walkThroughGate();
-
+                if(metroGate.getState() instanceof OpenState){
+                    return metroGate.walkThroughGate();
+                }
+                else{
+                    model.notifyObservers(MetroEventsEnum.ALERT);
+                    return metroGate.createAlert();
+                }
             }
 
         }

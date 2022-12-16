@@ -69,14 +69,6 @@ public class ControlCenterPane extends GridPane {
         root.getChildren().add(stationInformationBox);
     }
 
-    public void gateInformation(VBox root){
-
-    }
-
-    public void alertInformation(VBox root){
-
-    }
-
     public void openStationButton(VBox root) throws IOException {
         // open metrostation button
         Button openButton = new Button("Open metrostation");
@@ -99,25 +91,11 @@ public class ControlCenterPane extends GridPane {
         root.getChildren().add(closeButton);
     }
 
-    // METHODES
-    public void newTickets(int tickets, double amount){
-        ticketField.setText(String.valueOf(tickets));
-        amountField.setText(String.valueOf(amount));
-    }
-
-    public void addAlert(String alert){
-        this.alert.setText(alert);
-        // add a newline
-        this.alert.appendText("\n");
-
-
-    }
-
     public void setgateField(HBox root,int gateid){
         Label status = new Label(statusstring);
 
         HBox statusBox = new HBox();
-            VBox gateInformationBox = new VBox();
+        VBox gateInformationBox = new VBox();
         gateInformationBox.setSpacing(5);
         gateInformationBox.setAlignment(Pos.CENTER_LEFT);
 
@@ -125,20 +103,20 @@ public class ControlCenterPane extends GridPane {
         statusBox.getChildren().add(gate);
         Button active =  new Button("Activate");
         active.setOnAction(e ->
-                {
-                    controlCenterPaneController.activateGate(gateid);
-                    //active.setDisable(true);
-                    status.setText("Active");
-                    gateInformationBox.setStyle("-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 1px;");
-                });
+        {
+            controlCenterPaneController.activateGate(gateid);
+            //active.setDisable(true);
+            status.setText("Active");
+            gateInformationBox.setStyle("-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 1px;");
+        });
         Button deactive =  new Button("Deactivate");
         deactive.setOnAction(e ->
-                {
-                    controlCenterPaneController.deactivateGate(gateid);
-                   // deactive.setDisable(true);
-                    status.setText("Inactive");
-                    gateInformationBox.setStyle("-fx-background-color: orange; -fx-border-color: black; -fx-border-width: 1px;");
-                });
+        {
+            controlCenterPaneController.deactivateGate(gateid);
+            // deactive.setDisable(true);
+            status.setText("Inactive");
+            gateInformationBox.setStyle("-fx-background-color: orange; -fx-border-color: black; -fx-border-width: 1px;");
+        });
 
 
 
@@ -166,7 +144,6 @@ public class ControlCenterPane extends GridPane {
 
     }
 
-
     public void setAlertField(VBox root){
         HBox alertBox = new HBox();
 
@@ -175,6 +152,21 @@ public class ControlCenterPane extends GridPane {
         alertBox.getChildren().add(alert);
         root.getChildren().add(alertBox);
     }
+
+    // METHODES
+    public void newTickets(int tickets, double amount){
+        ticketField.setText(String.valueOf(tickets));
+        amountField.setText(String.valueOf(amount));
+    }
+
+    public void addAlert(String alert) {
+        this.alert.appendText(alert);
+        // add a newline
+        this.alert.appendText("\n");
+
+    }
+
+
 
 
 
