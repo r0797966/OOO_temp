@@ -24,6 +24,9 @@ public class MetroStationViewController implements Observer {
             case OPEN_METROSTATION:
                 getMetroCardIdList();
                 break;
+            case ACTIVATE_GATE:
+                changeBackground();
+                break;
         }
     }
 
@@ -38,5 +41,9 @@ public class MetroStationViewController implements Observer {
 
     public void walkThroughGate(int gateid) {
        view.walkThroughGate(model.walkThroughGate(gateid));
+    }
+
+    public void changeBackground() {
+        view.changeBackground();
     }
 }

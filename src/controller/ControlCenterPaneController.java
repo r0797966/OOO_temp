@@ -28,11 +28,6 @@ public class ControlCenterPaneController implements Observer {
                 reloadMetrostation();
                 break;
             case BUY_TICKETS:
-                newTickets();
-                break;
-            case SCAN_METROGATE:
-                newTickets();
-                break;
             case ACTIVATE_GATE:
                 newTickets();
                 break;
@@ -46,7 +41,6 @@ public class ControlCenterPaneController implements Observer {
        view.addAlert(model.createAlert());
     }
 
-    // OPENMETROSTATION
     public void openMetroStation() {
         model.openMetroStation();
     }

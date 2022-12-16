@@ -7,7 +7,6 @@ public class ClosedState extends MetroGateState {
     @Override
     public String walkThroughGate(MetroStateContext context) {
         context.setState(new ClosedState());
-
         return createAlert(context);
     }
 

@@ -26,7 +26,6 @@ public class MetroFacade implements Subject {
         observers = new ArrayList<>();
     }
 
-    // OPENMETROSTATION
     public void openMetroStation() {
         try {
             InputStream input = new FileInputStream("src/bestanden/settings.properties");
@@ -53,28 +52,23 @@ public class MetroFacade implements Subject {
         }
     }
 
-    //GETMETROCARDLIST: ARRAYLIST<METROCARD>
     public ArrayList<MetroCard> getMetroCardList() {
         return metrocardDatabase.getMetroCardList();
     }
 
-    // GETMETROCARDIDLIST: ARRAYLIST<INTEGER>
     public ArrayList<Integer> getMetroCardIdList() {
         return metrocardDatabase.getMetroCardIdList();
     }
 
-    // NEWCARD
     public void newMetrocard() throws IOException {
         metrocardDatabase.newMetrocard();
         notifyObservers(MetroEventsEnum.BUY_METROCARD);
     }
 
-    // ADDRIDESINFORMATION
     public TicketPrice addRidesInformation(int id, int rides, boolean isStudent, boolean isSenior) {
         return metrocardDatabase.addRidesInformation(id, rides, isStudent, isSenior);
     }
 
-    // ADDRIDES
     public void addRides(int id, int rides, double price) {
         metrocardDatabase.addRides(id, rides, price);
         notifyObservers(MetroEventsEnum.BUY_TICKETS);
@@ -89,28 +83,29 @@ public class MetroFacade implements Subject {
     }
 
     public String scanMetroGate(int metroCardid, int gateid) {
-
         MetroCard card = metrocardDatabase.scanMetroGate(metroCardid);
-        if (!card.isNotValidCard()) {
-
-            metroStation.increaseNumberOfScannedCards(gateid);
-            card.scannedMetroGate();
-            notifyObservers(MetroEventsEnum.SCAN_METROGATE);
-            return metroStation.scanMetroGate(gateid);
-        } else {
-
-           return metroStation.createAlert(gateid);
-        }
+        return metroStation.scanMetroGate(gateid, card, this);
     }
 
     public String walkThroughGate(int gateid) {
        return metroStation.walkThroughGate(gateid, this);
     }
 
-
-
     public void closeStation(){
         metrocardDatabase.save();
+    }
+
+    public void activateGate(int gateid) {
+        metroStation.activateGate(gateid);
+        notifyObservers(MetroEventsEnum.ACTIVATE_GATE);
+    }
+
+    public void deactivateGate(int gateid) {
+        metroStation.deactivateGate(gateid);
+    }
+
+    public String createAlert() {
+        return metroStation.createAlert(1);
     }
 
     // SUBJECT
@@ -133,20 +128,5 @@ public class MetroFacade implements Subject {
                 e.printStackTrace();
             }
         });
-    }
-
-
-    public void activateGate(int gateid) {
-        metroStation.activateGate(gateid);
-        notifyObservers(MetroEventsEnum.ACTIVATE_GATE);
-    }
-
-    public void deactivateGate(int gateid) {
-        metroStation.deactivateGate(gateid);
-        notifyObservers(MetroEventsEnum.ACTIVATE_GATE);
-    }
-
-    public String createAlert() {
-        return metroStation.createAlert(1);
     }
 }

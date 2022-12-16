@@ -6,34 +6,28 @@ public abstract class MetroGateState {
 
 
     public String createAlert(MetroStateContext context){
-        return "Unauthorized passage ";
-        
+        return "Create Alert cannot be used";
     }
     public String createWarning(MetroStateContext context){
-        return "Warning!";
-
+        return "Warning cannot be used";
     }
     public void increaseNumberOfScannedCards(MetroStateContext context){
 
-        // increase number of scanned cards
-        /// .... + 1
     }
     public String scanMetroGate(MetroStateContext context){
-        return "You cannot do this";
+        return "Scan Metro Gate cannot be used";
     }
     public String walkThroughGate(MetroStateContext context){
-        return createAlert(context);
-
+        return "Walk Through Gate cannot be used";
     }
 
 
     public String activate(MetroStateContext context) {
-        return "Gate is already active";
+        return "Activate cannot be used";
     }
 
     public String deactivate(MetroStateContext context) {
-        return "Gate is already inactive";
-
+        return "Deactivate cannot be used";
     }
 
 }

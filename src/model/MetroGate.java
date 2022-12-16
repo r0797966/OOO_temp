@@ -5,15 +5,12 @@ import model.metroGateStates.*;
 public class MetroGate {
     private MetroGateState state;
     private int GateID;
-    private MetroStateContext context = new MetroStateContext();
-    // scanMetroGate(getId)
+    private MetroStateContext context;
     private String name;
-
-
-
     private int numberOfScannedCards;
 
     public MetroGate(int GateID, String name) {
+        context = new MetroStateContext();
         this.GateID = GateID;
         this.name = name;
         this.state = new InactiveState();
@@ -21,7 +18,7 @@ public class MetroGate {
 
     public MetroGate(int GateID){
         this.GateID = GateID;
-        this.state = new ClosedState();
+        this.state = new InactiveState();
     }
 
     public void setState(MetroGateState state) {
@@ -39,7 +36,6 @@ public class MetroGate {
     }
 
     public String scanMetroGate() {
-        System.out.println(context.getState());
         return context.getState().scanMetroGate(context);
     }
 
@@ -50,7 +46,6 @@ public class MetroGate {
 
     public String createAlert() {
           return context.getState().createAlert(context);
-
     }
 
     public String walkThroughGate() {
@@ -63,19 +58,12 @@ public class MetroGate {
     }
 
     public void activate() {
-         context.getState().activate(context);
+        context.getState().activate(context);
     }
 
     public void deactivate() {
-         context.getState().deactivate(context);
+        context.getState().deactivate(context);
     }
-
-
-
-
-
-
-
 
 
     public int getGateID() {
@@ -85,9 +73,6 @@ public class MetroGate {
     public MetroGateState getState() {
         return state;
     }
-
-
-
 
     public int getNumberOfScannedCards() {
         return numberOfScannedCards;

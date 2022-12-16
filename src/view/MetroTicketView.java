@@ -64,7 +64,7 @@ public class MetroTicketView extends GridPane {
 
 		vBox.setSpacing(5);
 		vBox.setPadding(new Insets(10, 10, 10, 10));
-		// NEW CARD BUTTON
+
 		newCardButton.setDisable(true);
 		newCardButton.setOnAction(e -> {
 			try {
@@ -73,7 +73,7 @@ public class MetroTicketView extends GridPane {
 				ex.printStackTrace();
 			}
 		});
-		// TEXT
+
 		Text text1 = new Text("Metro card price is 15€ - 2 free rides included");
 
 		vBox.getChildren().add(newCardButton);
@@ -82,7 +82,7 @@ public class MetroTicketView extends GridPane {
 	}
 
 	public void addRides(VBox root){
-		// select metrocard choicebox
+
 		HBox hBox = new HBox();
 		hBox.setSpacing(10);
 		Label label = new Label("Select metro card:");
@@ -90,7 +90,7 @@ public class MetroTicketView extends GridPane {
 		metroCardIdList.setPrefWidth(80);
 		hBox.getChildren().add(metroCardIdList);
 
-		// number of rides
+
 		HBox hBox2 = new HBox();
 		hBox2.setSpacing(16);
 		Label label2 = new Label("Number of rides:");
@@ -98,13 +98,13 @@ public class MetroTicketView extends GridPane {
 		hBox2.getChildren().add(label2);
 		hBox2.getChildren().add(numberRides);
 
-		// higher education student?
+
 		HBox hBox3 = new HBox();
 		hBox3.setSpacing(10);
 		CheckBox studies = new CheckBox("Higher education student?");
 		hBox3.getChildren().add(studies);
 
-		// age range
+
 		HBox hBox4 = new HBox();
 		hBox4.setSpacing(5);
 		ToggleGroup toggleGroup = new ToggleGroup();
@@ -118,7 +118,7 @@ public class MetroTicketView extends GridPane {
 		hBox4.getChildren().add(radioButton2);
 		hBox4.getChildren().add(radioButton3);
 
-		// add rides button
+
 		addRides.setDisable(true);
 		addRides.setOnAction(e -> {
 			Integer id = metroCardIdList.getValue();
@@ -140,13 +140,12 @@ public class MetroTicketView extends GridPane {
 		root.getChildren().add(vBox);
 	}
 
-	// ADD RIDES VBOX
 	public void informationView(VBox root){
-		// information
+
 		VBox vBox2 = new VBox();
 		vBox2.setSpacing(5);
 		vBox2.setPadding(new Insets(10, 10, 10, 10));
-		// price
+
 		HBox hBox5 = new HBox();
 		hBox5.setSpacing(10);
 		hBox5.setAlignment(Pos.CENTER_LEFT);
@@ -155,8 +154,7 @@ public class MetroTicketView extends GridPane {
 		ticketPrice.setEditable(false);
 		hBox5.getChildren().add(label3);
 		hBox5.getChildren().add(ticketPrice);
-		// text
-		// confirm or cancel
+
 		HBox hBox6 = new HBox();
 		hBox6.setSpacing(10);
 		confirmButton.setDisable(true);
@@ -181,7 +179,6 @@ public class MetroTicketView extends GridPane {
 		vBox2.getChildren().add(priceText);
 		vBox2.getChildren().add(hBox6);
 
-		// add boxes
 		VBox vBox = new VBox();
 		vBox.setSpacing(10);
 		vBox.setPadding(new Insets(10, 10, 10, 10));
@@ -189,7 +186,6 @@ public class MetroTicketView extends GridPane {
 		root.getChildren().add(vBox);
 	}
 
-	// UPDATEMETROCARDIDLIST(IDs ArrayList<Integer>)
 	public void updateMetroCardIdList(ArrayList<Integer> ids) {
 		metroCardIdList.setItems(FXCollections.observableArrayList(ids));
 		metroCardIdList.getSelectionModel().selectFirst();

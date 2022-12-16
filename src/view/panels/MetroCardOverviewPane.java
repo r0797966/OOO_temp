@@ -12,7 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import model.MetroCard;
 import model.database.MetrocardDatabase;
-import model.facade.MetroFacade;
 
 import java.io.IOException;
 import java.util.ArrayList;
