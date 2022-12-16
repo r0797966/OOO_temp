@@ -4,19 +4,13 @@ public abstract class MetroGateState {
 
 
 
-    public String openGate(MetroStateContext context){
-        return "Gate is open";
-    }
-    public String closeGate(MetroStateContext context){
-        return "Gate is closed";
 
-    }
     public String createAlert(MetroStateContext context){
-        return "You can't do this ";
+        return "Unauthorized passage ";
         
     }
     public String createWarning(MetroStateContext context){
-        return "Warning is created";
+        return "Warning!";
 
     }
     public void increaseNumberOfScannedCards(MetroStateContext context){
@@ -25,10 +19,10 @@ public abstract class MetroGateState {
         /// .... + 1
     }
     public String scanMetroGate(MetroStateContext context){
-        return "Gate is scanned";
+        return "You cannot do this";
     }
     public String walkThroughGate(MetroStateContext context){
-        return "Person walks through gate";
+        return createAlert(context);
 
     }
     /*public String activate(){
@@ -40,15 +34,14 @@ public abstract class MetroGateState {
 
     }*/
 
-    public void setClosedState(MetroStateContext context) {
-        context.setState(new ClosedState());
+
+    public String activate(MetroStateContext context) {
+        return "Gate is already active";
     }
 
-    public void activate(MetroStateContext context) {
+    public String deactivate(MetroStateContext context) {
+        return "Gate is already inactive";
 
-    }
-
-    public void deactivate(MetroStateContext context) {
     }
 
 

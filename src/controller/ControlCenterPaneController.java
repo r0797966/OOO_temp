@@ -33,8 +33,17 @@ public class ControlCenterPaneController implements Observer {
             case SCAN_METROGATE:
                 newTickets();
                 break;
+            case ACTIVATE_GATE:
+                newTickets();
+                break;
+            case ALERT:
+                addAlert();
         }
 
+    }
+
+    private void addAlert() {
+       // view.addAlert(model.createAlert());
     }
 
     // OPENMETROSTATION
@@ -55,4 +64,11 @@ public class ControlCenterPaneController implements Observer {
         model.closeStation();
     }
 
+    public void activateGate(int gateid) {
+        model.activateGate(gateid);
+    }
+
+    public void deactivateGate(int gateid) {
+        model.deactivateGate(gateid);
+    }
 }

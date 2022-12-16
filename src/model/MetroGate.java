@@ -16,7 +16,7 @@ public class MetroGate {
     public MetroGate(int GateID, String name) {
         this.GateID = GateID;
         this.name = name;
-        this.state = new ClosedState();
+        this.state = new InactiveState();
     }
 
     public MetroGate(int GateID){

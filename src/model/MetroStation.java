@@ -51,5 +51,21 @@ public class MetroStation {
         return null;
     }
 
+    public void activateGate(int gateid) {
+        for (MetroGate metroGate : metroGates) {
+            if (metroGate.getGateID() == gateid) {
+                metroGate.activate();
+            }
+        }
+    }
+
+    public void deactivateGate(int gateid) {
+        for (MetroGate metroGate : metroGates) {
+            if (metroGate.getGateID() == gateid) {
+                metroGate.deactivate();
+            }
+        }
+    }
+
     // scanMetroGate()
 }

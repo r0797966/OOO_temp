@@ -93,11 +93,6 @@ public class MetroFacade implements Subject {
         MetroCard card = metrocardDatabase.scanMetroGate(metroCardid);
         if (!card.isNotValidCard()) {
 
-
-
-/*
-            metroStation.scanMetroGate(gateid);
-*/
             metroStation.increaseNumberOfScannedCards(gateid);
             card.scannedMetroGate();
             notifyObservers(MetroEventsEnum.SCAN_METROGATE);
@@ -108,11 +103,9 @@ public class MetroFacade implements Subject {
         }
     }
 
-    public String walkThroughGate(int metrocardid, int gateid) {
-
+    public String walkThroughGate(int gateid) {
+        notifyObservers(MetroEventsEnum.WALKTHROUGH_GATE);
        return metroStation.walkThroughGate(gateid);
-
-
     }
 
 
@@ -144,4 +137,13 @@ public class MetroFacade implements Subject {
     }
 
 
+    public void activateGate(int gateid) {
+        metroStation.activateGate(gateid);
+        notifyObservers(MetroEventsEnum.ACTIVATE_GATE);
+    }
+
+    public void deactivateGate(int gateid) {
+        metroStation.deactivateGate(gateid);
+        notifyObservers(MetroEventsEnum.ACTIVATE_GATE);
+    }
 }

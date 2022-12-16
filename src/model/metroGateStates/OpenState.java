@@ -9,7 +9,7 @@ public class OpenState extends MetroGateState {
 @Override
 public String walkThroughGate(MetroStateContext context) {
     context.setState(new ClosedState());
-    return "Walked through gate -OBAMA 2014";
+    return "Walked through gate ";
 
 }
 
