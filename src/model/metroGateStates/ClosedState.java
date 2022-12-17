@@ -1,13 +1,13 @@
 package model.metroGateStates;
 
 public class ClosedState extends MetroGateState {
-    // Constructor
+
 
 
     @Override
     public String walkThroughGate(MetroStateContext context) {
         context.setState(new ClosedState());
-        return createAlert(context);
+        return "Can't walk through closed gate";
     }
 
     @Override
@@ -18,16 +18,14 @@ public class ClosedState extends MetroGateState {
 
     @Override
     public void increaseNumberOfScannedCards(MetroStateContext context) {
-
-
     }
 
 
 
     @Override
-    public String createAlert(MetroStateContext context) {
+    public String createAlert(MetroStateContext context, int id) {
         context.setState(new ClosedState());
-        return "User has no available tickets left";
+        return "Unauthorized access at gate " + id;
     }
 
     @Override

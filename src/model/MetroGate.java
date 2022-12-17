@@ -10,7 +10,7 @@ public class MetroGate {
     private int numberOfScannedCards;
 
     public MetroGate(int GateID, String name) {
-        context = new MetroStateContext();
+        this.context = new MetroStateContext();
         this.GateID = GateID;
         this.name = name;
         this.state = new InactiveState();
@@ -44,8 +44,8 @@ public class MetroGate {
         numberOfScannedCards++;
     }
 
-    public String createAlert() {
-          return context.getState().createAlert(context);
+    public String createAlert(int id) {
+        return context.getState().createAlert(context, id);
     }
 
     public String walkThroughGate() {
@@ -76,6 +76,10 @@ public class MetroGate {
 
     public int getNumberOfScannedCards() {
         return numberOfScannedCards;
+    }
+
+    public MetroStateContext getContext() {
+        return context;
     }
 
 

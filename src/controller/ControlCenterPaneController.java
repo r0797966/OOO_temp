@@ -37,10 +37,6 @@ public class ControlCenterPaneController implements Observer {
 
     }
 
-    private void addAlert() {
-       view.addAlert(model.createAlert());
-    }
-
     public void openMetroStation() {
         model.openMetroStation();
     }
@@ -64,5 +60,9 @@ public class ControlCenterPaneController implements Observer {
 
     public void deactivateGate(int gateid) {
         model.deactivateGate(gateid);
+    }
+
+    private void addAlert() {
+        view.addAlert(model.createAlert());
     }
 }

@@ -20,16 +20,18 @@ public class MetroStation {
     public String scanMetroGate(int gateid, MetroCard card, MetroFacade facade) {
         for (MetroGate metroGate : metroGates) {
             if (metroGate.getGateID() == gateid) {
-                System.out.println(metroGate.getState().toString());
-                System.out.println(!card.isNotValidCard());
-                if(!card.isNotValidCard() && metroGate.getState() instanceof ClosedState) {
-                    metroGate.increaseNumberOfScannedCards();
-                    card.scannedMetroGate();
-                    facade.notifyObservers(MetroEventsEnum.SCAN_METROGATE);
-                    return metroGate.scanMetroGate();
+                if(!card.isNotValidCard()) {
+                    if (metroGate.getContext().getState() instanceof ClosedState) {
+                        facade.notifyObservers(MetroEventsEnum.SCAN_METROGATE);
+                        metroGate.increaseNumberOfScannedCards();
+                        card.scannedMetroGate();
+                        return metroGate.scanMetroGate();
+                    } else {
+                        facade.notifyObservers(MetroEventsEnum.ALERT);
+                        return "Gate is already open";
+                    }
                 } else {
-                    facade.notifyObservers(MetroEventsEnum.ALERT);
-                    return metroGate.createAlert();
+                    return "Ticket is not valid";
                 }
             }
         }
@@ -42,31 +44,25 @@ public class MetroStation {
                 metroGate.increaseNumberOfScannedCards();
             }
         }
-
     }
 
     public String createAlert(int gateID) {
         for (MetroGate metroGate : metroGates) {
             if (metroGate.getGateID() == gateID) {
-                return metroGate.createAlert();
+                return metroGate.createAlert(gateID);
             }
         }
         return null;
-
     }
 
     public String walkThroughGate(int gateid, MetroFacade model) {
         for (MetroGate metroGate : metroGates) {
             if (metroGate.getGateID() == gateid) {
-                if(metroGate.getState() instanceof OpenState){
-                    return metroGate.walkThroughGate();
-                }
-                else{
+                if(metroGate.getContext().getState() instanceof ClosedState){
                     model.notifyObservers(MetroEventsEnum.ALERT);
-                    return metroGate.createAlert();
                 }
+                return metroGate.walkThroughGate();
             }
-
         }
         return null;
     }
@@ -86,6 +82,4 @@ public class MetroStation {
             }
         }
     }
-
-    // scanMetroGate()
 }

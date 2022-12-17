@@ -75,7 +75,7 @@ public class MetroStationView {
 
 		information = new TextField();
 		information.setEditable(false);
-		information.setPrefWidth(125);
+		information.setPrefWidth(300); // change
 
 		gate.getChildren().add(title1);
 		gate.getChildren().add(label);
