@@ -20,9 +20,9 @@ public class OpenState extends MetroGateState {
     }
 
     @Override
-    public String createWarning(MetroStateContext context) {
+    public String createAlert(MetroStateContext context, int id) {
         context.setState(new OpenState());
-        return "Card already scanned and warning is created";
+        return "Double scan at gate " + id;
     }
 
 

@@ -102,6 +102,7 @@ public class MetroFacade implements Subject {
 
     public void deactivateGate(int gateid) {
         metroStation.deactivateGate(gateid);
+        notifyObservers(MetroEventsEnum.DEACTIVATE_GATE);
     }
 
     public String createAlert() {

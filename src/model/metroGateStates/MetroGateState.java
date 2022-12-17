@@ -8,9 +8,6 @@ public abstract class MetroGateState {
     public String createAlert(MetroStateContext context, int id){
         return "Create Alert cannot be used";
     }
-    public String createWarning(MetroStateContext context){
-        return "Warning cannot be used";
-    }
     public void increaseNumberOfScannedCards(MetroStateContext context){
 
     }

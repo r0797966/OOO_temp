@@ -53,10 +53,6 @@ public class MetroGate {
 
     }
 
-    public void createWarning() {
-         context.getState().createWarning(context);
-    }
-
     public void activate() {
         context.getState().activate(context);
     }

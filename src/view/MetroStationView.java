@@ -56,18 +56,18 @@ public class MetroStationView {
 		Label label = new Label("MetroCardID:");
 		metroCardIdList = new ChoiceBox<Integer>();
 		metroCardIdList.setDisable(true);
-		metroCardIdList.setPrefWidth(125);
+		metroCardIdList.setPrefWidth(200);
 		metroCardIdList.getSelectionModel().selectFirst();
 
 		scanCardButton = new Button("Scan card");
-		scanCardButton.setPrefWidth(125);
+		scanCardButton.setPrefWidth(200);
 		scanCardButton.setDisable(true);
 		scanCardButton.setOnAction(e -> {
 			metroStationViewController.scanMetroGate(metroCardIdList.getValue(), 1);
 		});
 
 		walkThroughGateButton = new Button("Walk through gate");
-		walkThroughGateButton.setPrefWidth(125);
+		walkThroughGateButton.setPrefWidth(200);
 		walkThroughGateButton.setDisable(true);
 		walkThroughGateButton.setOnAction(e -> {
 			metroStationViewController.walkThroughGate(1);
@@ -75,7 +75,7 @@ public class MetroStationView {
 
 		information = new TextField();
 		information.setEditable(false);
-		information.setPrefWidth(300); // change
+		information.setPrefWidth(200); // change
 
 		gate.getChildren().add(title1);
 		gate.getChildren().add(label);
@@ -103,10 +103,17 @@ public class MetroStationView {
 		information.setText(walkThroughGate);
 	}
 
-	public void changeBackground() {
+	public void activate() {
 		gate.setStyle("-fx-background-color: grey;");
 		scanCardButton.setDisable(false);
 		walkThroughGateButton.setDisable(false);
 		metroCardIdList.setDisable(false);
+	}
+
+	public void deactivate() {
+		gate.setStyle("-fx-background-color: orange;");
+		scanCardButton.setDisable(true);
+		walkThroughGateButton.setDisable(true);
+		metroCardIdList.setDisable(true);
 	}
 }

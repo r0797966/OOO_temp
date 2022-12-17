@@ -25,7 +25,10 @@ public class MetroStationViewController implements Observer {
                 getMetroCardIdList();
                 break;
             case ACTIVATE_GATE:
-                changeBackground();
+                activate();
+                break;
+            case DEACTIVATE_GATE:
+                deactivate();
                 break;
         }
     }
@@ -43,7 +46,11 @@ public class MetroStationViewController implements Observer {
        view.walkThroughGate(model.walkThroughGate(gateid));
     }
 
-    public void changeBackground() {
-        view.changeBackground();
+    public void activate() {
+        view.activate();
+    }
+
+    public void deactivate() {
+        view.deactivate();
     }
 }
